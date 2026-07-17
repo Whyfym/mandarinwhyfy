@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Whyfy打字 — Latihan Mengetik Hanzi HSK 1-5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE6D4;
+    --paper-deep:#E2D9C2;
+    --ink:#211D18;
+    --ink-soft:#4A443C;
+    --seal:#AE1F2C;
+    --seal-deep:#8C1721;
+    --jade:#3C6E52;
+    --brass:#A9822A;
+    --line: rgba(33,29,24,.28);
+    --line-soft: rgba(33,29,24,.14);
+    --radius: 4px;
+    --shadow: 0 1px 0 rgba(33,29,24,.06), 0 8px 24px rgba(33,29,24,.08);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  html,body{margin:0;padding:0;overflow-x:hidden;width:100%;}
+  body{
+    background:var(--paper);
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 34px 34px;
+    color:var(--ink);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height:100vh;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  input, textarea, button, select{
+    -webkit-appearance:none; appearance:none; border-radius:0;
+    font-family:inherit; touch-action:manipulation;
+  }
+  button{cursor:pointer;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px 80px;}
+  header.site{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0 18px;border-bottom:2px solid var(--ink);
+    max-width:1040px;margin:0 auto;
+    padding-left:max(24px, env(safe-area-inset-left));
+    padding-right:max(24px, env(safe-area-inset-right));
+    padding-top:max(26px, env(safe-area-inset-top));
+    flex-wrap:wrap;gap:10px;
+  }
+  .logo{display:flex;align-items:baseline;gap:10px;cursor:pointer;}
+  .logo .mark{
+    font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-weight:900;font-size:1.9rem;
+    color:var(--seal); letter-spacing:1px;
+  }
+  .logo .name{font-family:'Fraunces',serif;font-weight:600;font-size:1.35rem;letter-spacing:.2px;}
+  .logo .name em{font-style:italic;color:var(--seal);}
+  .header-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  nav.top{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;}
+  nav.top button{
+    background:none;border:none;cursor:pointer;color:var(--ink-soft);
+    padding:6px 2px;border-bottom:2px solid transparent;font-family:inherit;font-size:inherit;
+    letter-spacing:inherit;
+  }
+  nav.top button.active, nav.top button:hover{color:var(--ink);border-bottom-color:var(--seal);}
+  .student-pill{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1.5px solid var(--ink);
+    background:var(--paper-deep);padding:5px 12px;display:flex;align-items:center;gap:8px;
+  }
+  .student-pill button{background:none;border:none;color:var(--seal);cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline;padding:0;}
+
+  /* HOME */
+  .hero{padding:56px 0 34px;}
+  .hero .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--jade);margin-bottom:14px;display:block;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2.1rem,5vw,3.4rem);
+    line-height:1.06;margin:0 0 18px;max-width:780px;
+  }
+  .hero h1 .cn{font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-weight:900;color:var(--seal);}
+  .hero p.lede{font-size:1.05rem;line-height:1.65;color:var(--ink-soft);max-width:620px;margin:0 0 28px;}
+  .hero-panel{
+    border:2px solid var(--ink);background:var(--paper-deep);
+    padding:22px 24px;display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+    box-shadow:var(--shadow);
+  }
+  .grid-demo{display:flex;gap:6px;}
+  .grid-box{
+    position:relative;width:2.5rem;height:2.5rem;border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-size:1.4rem;font-weight:700;
+    background:var(--paper);flex:none;
+  }
+  .grid-box.small{width:1.9rem;height:1.9rem;font-size:1.05rem;}
+  .grid-box::before{content:'';position:absolute;top:50%;left:2px;right:2px;border-top:1px dashed rgba(33,29,24,.32);}
+  .grid-box::after{content:'';position:absolute;left:50%;top:2px;bottom:2px;border-left:1px dashed rgba(33,29,24,.32);}
+  .hero-panel .cap{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--ink-soft);max-width:240px;}
+
+  .levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:36px 0;}
+  .lvl-card{
+    border:2px solid var(--ink);background:var(--paper);padding:20px;cursor:pointer;
+    position:relative;overflow:hidden;transition:transform .15s ease;box-shadow:var(--shadow);
+  }
+  .lvl-card:hover{transform:translateY(-3px);}
+  .lvl-card .num{
+    font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-weight:900;font-size:2.6rem;color:var(--line);
+    position:absolute;right:10px;top:2px;line-height:1;
+  }
+  .lvl-card h3{font-family:'Fraunces',serif;font-size:1.3rem;margin:0 0 4px;}
+  .lvl-card .sub{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--seal);margin-bottom:10px;display:block;}
+  .lvl-card p{font-size:.9rem;color:var(--ink-soft);line-height:1.5;margin:0 0 14px;min-height:60px;}
+  .lvl-card .go{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--ink);border-top:1px solid var(--line);padding-top:10px;display:flex;justify-content:space-between;}
+  .best{font-size:.72rem;color:var(--jade);}
+
+  .section-title{font-family:'Fraunces',serif;font-size:1.5rem;margin:44px 0 6px;}
+  .section-title small{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--ink-soft);display:block;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+  .howto{border-left:3px solid var(--brass);padding:6px 0 6px 18px;color:var(--ink-soft);font-size:.92rem;line-height:1.7;max-width:680px;}
+  .backlink{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:none;border:none;color:var(--ink-soft);cursor:pointer;padding:0;margin-bottom:6px;text-decoration:underline;}
+
+  /* LATIHAN GRID (per level) */
+  .latihan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:26px 0;}
+  .latihan-card{
+    border:1.5px solid var(--ink);background:var(--paper);padding:16px 18px;cursor:pointer;
+    box-shadow:var(--shadow);transition:transform .15s ease;position:relative;
+  }
+  .latihan-card:hover{transform:translateY(-2px);}
+  .latihan-card .lnum{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--seal);letter-spacing:.06em;
+    text-transform:uppercase;margin-bottom:6px;display:block;
+  }
+  .latihan-card h4{font-family:'Fraunces',serif;font-size:1.05rem;margin:0 0 8px;}
+  .latihan-card .meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:8px;}
+
+  /* IDENTITY FORM */
+  .identity-wrap{max-width:520px;margin:50px auto 0;}
+  .identity-card{border:2px solid var(--ink);background:var(--paper-deep);padding:40px 36px;box-shadow:var(--shadow);}
+  .identity-card .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--jade);display:block;margin-bottom:10px;}
+  .identity-card h2{font-family:'Fraunces',serif;font-size:1.7rem;margin:0 0 6px;}
+  .identity-card .sub{color:var(--ink-soft);font-size:.92rem;margin:0 0 26px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:6px;}
+  .field input{
+    width:100%;padding:12px 14px;border:1.5px solid var(--ink);background:#fff;
+    font-family:'Inter',sans-serif;font-size:1rem;
+  }
+  .field input:focus{outline:2px solid var(--seal);outline-offset:1px;}
+  .form-error{color:var(--seal);font-size:.82rem;font-family:'JetBrains Mono',monospace;margin:-8px 0 16px;}
+
+  /* PRACTICE */
+  .practice-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:34px 0 22px;}
+  .badge{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    border:1.5px solid var(--ink);padding:4px 10px;background:var(--paper-deep);
+  }
+  .stat-row{display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--ink-soft);}
+  .stat-row b{color:var(--ink);}
+  .progress-bar{height:6px;background:var(--paper-deep);border:1px solid var(--ink);margin-bottom:30px;}
+  .progress-bar > div{height:100%;background:var(--seal);transition:width .25s ease;}
+
+  .card{
+    border:2px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);
+    padding:34px 32px;position:relative;
+  }
+  .qnote{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--jade);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
+  .qtext{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:1.6rem;line-height:1.45;margin:0 0 26px;max-width:640px;}
+  .input-row{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;}
+  textarea#answerInput{
+    flex:1;min-width:240px;font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-size:1.5rem;
+    padding:14px 16px;border:1.5px solid var(--ink);background:#fff;resize:none;height:64px;
+  }
+  textarea#answerInput:focus{outline:2px solid var(--seal);outline-offset:1px;}
+  .btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.92rem;
+    border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
+    padding:14px 22px;cursor:pointer;letter-spacing:.01em;
+  }
+  .btn:hover{background:var(--seal-deep);border-color:var(--seal-deep);}
+  .btn.ghost{background:transparent;color:var(--ink);}
+  .btn.ghost:hover{background:var(--paper-deep);color:var(--ink);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .btn:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible{outline:2px solid var(--seal);outline-offset:2px;}
+
+  .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+
+  .feedback{margin-top:26px;padding-top:22px;border-top:1.5px dashed var(--line);}
+  .feedback.correct .verdict{color:var(--jade);}
+  .feedback.wrong .verdict{color:var(--seal);}
+  .verdict{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .stamp{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:2.1rem;height:2.1rem;border:3px double var(--jade);color:var(--jade);
+    border-radius:50%;font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-weight:900;font-size:1.1rem;
+    transform:rotate(-8deg);
+  }
+  .feedback.wrong .stamp{border-color:var(--seal);color:var(--seal);}
+  .answer-grids{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 10px;}
+  .answer-alt{font-size:.85rem;color:var(--ink-soft);margin-top:6px;}
+  .answer-alt b{color:var(--ink);font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-weight:600;}
+
+  /* SUMMARY */
+  .summary-card{border:2px solid var(--ink);background:var(--paper-deep);padding:50px 40px;text-align:center;box-shadow:var(--shadow);}
+  .summary-card .big{font-family:'Fraunces',serif;font-size:3rem;margin:0;}
+  .summary-card .lvl{font-family:'JetBrains Mono',monospace;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--seal);}
+  .summary-card p{color:var(--ink-soft);}
+  .summary-card .who{font-family:'Fraunces',serif;font-size:1.1rem;margin-top:-6px;}
+
+  /* VOCAB */
+  .vocab-toolbar{display:flex;gap:8px;margin:30px 0 20px;flex-wrap:wrap;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:7px 14px;
+    border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;
+  }
+  .chip.active{background:var(--ink);color:var(--paper);}
+  table.vocab{width:100%;border-collapse:collapse;font-size:.9rem;}
+  table.vocab th{
+    text-align:left;font-family:'JetBrains Mono',monospace;font-size:.68rem;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--ink-soft);border-bottom:2px solid var(--ink);padding:8px 8px;
+  }
+  table.vocab td{padding:9px 8px;border-bottom:1px solid var(--line-soft);}
+  table.vocab td.hz{font-family:'Noto Serif SC','PingFang SC','Heiti SC',serif;font-size:1.3rem;font-weight:600;width:70px;}
+  .table-scroll{overflow-x:auto;}
+
+  footer.site{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  @media (max-width:640px){
+    .card{padding:24px 18px;}
+    .qtext{font-size:1.3rem;}
+    .hero-panel{flex-direction:column;align-items:flex-start;}
+    .identity-card{padding:28px 22px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="logo" onclick="goHome()">
+    <span class="mark">字</span>
+    <span class="name">Whyfy<em>打字</em></span>
+  </div>
+  <div class="header-right">
+    <div id="studentPillHolder"></div>
+    <nav class="top">
+      <button id="navHome" class="active" onclick="goHome()">Beranda</button>
+      <button id="navVocab" onclick="goVocab()">Kosakata</button>
+      <button id="navRekap" onclick="goRekap()">Rekap Nilai</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* ============ DATA ============ */
+const LEVELS = [
+  {id:1, label:'HSK 1', sub:'Fondasi', desc:'是/有/吗, kata ganti, angka + kata bantu bilangan, kalimat inti yang sangat sederhana.'},
+  {id:2, label:'HSK 2', sub:'Pemula Lanjut', desc:'了, 在 (sedang), 会/得, perbandingan 比, 因为...所以, 觉得.'},
+  {id:3, label:'HSK 3', sub:'Menengah Awal', desc:'把-sentence, 被 (pasif), 虽然...但是, 一边...一边, 越来越, 除了...以外.'},
+  {id:4, label:'HSK 4', sub:'Menengah', desc:'尽管...还是, 不但...而且, 只有...才, 无论...都, 由于, 与其...不如.'},
+  {id:5, label:'HSK 5', sub:'Menengah Lanjut', desc:'即使...也, 万一, 除非...否则, 与其说...不如说, 甚至, 何况, 何必.'}
+];
+
+/* QUESTIONS[level] = array of 10 latihan; each latihan = {title, note, items:[{id_text, answers}]} — 20 soal per latihan (grammar campuran + pola Subjek+Waktu+Tempat+Verb+Objek) */
+const QUESTIONS = {"1":[{"title":"Latihan 1","note":"是 / 不是","items":[{"id_text":"Saya adalah murid.","answers":["我是学生"]},{"id_text":"Dia adalah dokter.","answers":["他是医生","她是医生"]},{"id_text":"Kami bukan guru.","answers":["我们不是老师"]},{"id_text":"Dia bukan orang Amerika.","answers":["他不是美国人","她不是美国人"]},{"id_text":"Ini adalah rumahku.","answers":["这是我的家"]},{"id_text":"Kamu adalah murid.","answers":["你是学生"]},{"id_text":"Mereka adalah guru.","answers":["他们是老师"]},{"id_text":"Aku bukan dokter.","answers":["我不是医生"]},{"id_text":"Kalian bukan orang Jepang.","answers":["你们不是日本人"]},{"id_text":"Itu adalah sekolahku.","answers":["那是我的学校"]},{"id_text":"Ini bukan bukuku.","answers":["这不是我的书"]},{"id_text":"Dia adalah orang Tiongkok.","answers":["他是中国人","她是中国人"]},{"id_text":"Kami adalah teman.","answers":["我们是朋友"]},{"id_text":"Ini adalah mejaku.","answers":["这是我的桌子"]},{"id_text":"Dia bukan muridku.","answers":["他不是我的学生","她不是我的学生"]},{"id_text":"Kemarin dia adalah tamu di rumahku.","answers":["昨天他是我家的客人","昨天她是我家的客人"]},{"id_text":"Sekarang kami adalah murid di sekolah ini.","answers":["现在我们是这个学校的学生"]},{"id_text":"Tahun ini dia adalah ketua kelas.","answers":["今年他是班长","今年她是班长"]},{"id_text":"Besok itu bukan hari liburku.","answers":["明天不是我的假期"]},{"id_text":"Kemarin itu bukan hari ulang tahunku.","answers":["昨天不是我的生日"]}]},{"title":"Latihan 2","note":"有 / 没有","items":[{"id_text":"Aku punya seekor anjing.","answers":["我有一只狗"]},{"id_text":"Dia tidak punya mobil.","answers":["他没有车","她没有车"]},{"id_text":"Kami punya banyak teman.","answers":["我们有很多朋友"]},{"id_text":"Aku tidak punya uang.","answers":["我没有钱"]},{"id_text":"Dia punya dua anak.","answers":["他有两个孩子","她有两个孩子"]},{"id_text":"Kamu punya sebuah tas.","answers":["你有一个包"]},{"id_text":"Mereka tidak punya waktu.","answers":["他们没有时间"]},{"id_text":"Aku punya dua kucing.","answers":["我有两只猫"]},{"id_text":"Kami tidak punya mobil.","answers":["我们没有车"]},{"id_text":"Dia punya banyak buku.","answers":["他有很多书","她有很多书"]},{"id_text":"Kalian punya kunci itu.","answers":["你们有那把钥匙"]},{"id_text":"Aku tidak punya kursi.","answers":["我没有椅子"]},{"id_text":"Dia punya satu anjing.","answers":["他有一只狗","她有一只狗"]},{"id_text":"Kami punya sedikit uang.","answers":["我们有一点儿钱"]},{"id_text":"Mereka punya tiga rumah.","answers":["他们有三套房子"]},{"id_text":"Di sekolah ada banyak murid.","answers":["学校里有很多学生"]},{"id_text":"Sekarang aku tidak punya waktu.","answers":["我现在没有时间"]},{"id_text":"Kemarin dia punya banyak pekerjaan rumah.","answers":["昨天他有很多作业","昨天她有很多作业"]},{"id_text":"Di rumahku ada seekor kucing.","answers":["我家有一只猫"]},{"id_text":"Besok kami tidak punya kelas.","answers":["我们明天没有课"]}]},{"title":"Latihan 3","note":"angka + kata bantu bilangan","items":[{"id_text":"Aku punya empat kursi.","answers":["我有四把椅子"]},{"id_text":"Dia membeli lima apel.","answers":["他买了五个苹果","她买了五个苹果"]},{"id_text":"Kami punya tiga anjing.","answers":["我们有三只狗"]},{"id_text":"Aku ingin satu cangkir teh.","answers":["我要一杯茶"]},{"id_text":"Dia punya enam buku.","answers":["他有六本书","她有六本书"]},{"id_text":"Aku punya dua meja.","answers":["我有两张桌子"]},{"id_text":"Dia membeli tujuh buku.","answers":["他买了七本书","她买了七本书"]},{"id_text":"Kami punya empat anjing.","answers":["我们有四只狗"]},{"id_text":"Aku ingin dua cangkir teh.","answers":["我要两杯茶"]},{"id_text":"Dia punya delapan kursi.","answers":["他有八把椅子","她有八把椅子"]},{"id_text":"Kamu punya sembilan apel.","answers":["你有九个苹果"]},{"id_text":"Aku punya satu kucing.","answers":["我有一只猫"]},{"id_text":"Kami membeli tiga roti.","answers":["我们买了三个面包"]},{"id_text":"Dia punya lima mobil.","answers":["他有五辆车","她有五辆车"]},{"id_text":"Aku ingin sepuluh buku.","answers":["我要十本书"]},{"id_text":"Sekarang aku punya dua buku baru.","answers":["我现在有两本新书"]},{"id_text":"Kemarin dia membeli tiga cangkir kopi.","answers":["昨天他买了三杯咖啡","昨天她买了三杯咖啡"]},{"id_text":"Di rumah kami ada empat kursi.","answers":["我们家有四把椅子"]},{"id_text":"Besok aku ingin lima buah apel.","answers":["我明天要五个苹果"]},{"id_text":"Di kelas ini ada enam meja.","answers":["这个教室有六张桌子"]}]},{"title":"Latihan 4","note":"的 (kepemilikan/atribut)","items":[{"id_text":"Ini bukan mobilku.","answers":["这不是我的车"]},{"id_text":"Itu adalah tas kakak perempuanku.","answers":["那是我姐姐的包"]},{"id_text":"Ini adalah rumah kami.","answers":["这是我们的家"]},{"id_text":"Itu adalah buku milik guru.","answers":["那是老师的书"]},{"id_text":"Ini adalah kucing milik temanku.","answers":["这是我朋友的猫"]},{"id_text":"Ini adalah tas temanku.","answers":["这是我朋友的包"]},{"id_text":"Itu bukan mobil kami.","answers":["那不是我们的车"]},{"id_text":"Ini adalah anjing tetanggaku.","answers":["这是我邻居的狗"]},{"id_text":"Itu adalah kunci ayahku.","answers":["那是我爸爸的钥匙"]},{"id_text":"Ini adalah kursi ibu.","answers":["这是妈妈的椅子"]},{"id_text":"Itu adalah rumah keluarga kami.","answers":["那是我们家的房子"]},{"id_text":"Ini bukan kucing kakak perempuanku.","answers":["这不是我姐姐的猫"]},{"id_text":"Itu adalah tas sekolah dia.","answers":["那是他的书包","那是她的书包"]},{"id_text":"Ini adalah buku murid itu.","answers":["这是那个学生的书"]},{"id_text":"Itu adalah meja guru.","answers":["那是老师的桌子"]},{"id_text":"Ini adalah kunci sekolah kami.","answers":["这是我们学校的钥匙"]},{"id_text":"Itu adalah pekerjaan rumah muridku.","answers":["那是我学生的作业"]},{"id_text":"Sekarang ini adalah mejaku di kantor.","answers":["现在这是我在办公室的桌子"]},{"id_text":"Itu bukan kucing tetanggaku.","answers":["那不是我邻居的猫"]},{"id_text":"Ini adalah buku baru gurunya.","answers":["这是他老师的新书","这是她老师的新书"]}]},{"title":"Latihan 5","note":"吗 (pertanyaan ya/tidak)","items":[{"id_text":"Apakah kamu punya waktu?","answers":["你有时间吗"]},{"id_text":"Apakah dia guru?","answers":["他是老师吗","她是老师吗"]},{"id_text":"Apakah kamu suka kopi?","answers":["你喜欢咖啡吗"]},{"id_text":"Apakah ini rumahmu?","answers":["这是你的家吗"]},{"id_text":"Apakah mereka murid?","answers":["他们是学生吗"]},{"id_text":"Apakah kamu lapar?","answers":["你饿吗"]},{"id_text":"Apakah dia orang Indonesia?","answers":["他是印度尼西亚人吗","她是印度尼西亚人吗"]},{"id_text":"Apakah kalian punya waktu?","answers":["你们有时间吗"]},{"id_text":"Apakah ini mejamu?","answers":["这是你的桌子吗"]},{"id_text":"Apakah kamu suka bahasa Mandarin?","answers":["你喜欢汉语吗","你喜欢中文吗"]},{"id_text":"Apakah mereka guru?","answers":["他们是老师吗"]},{"id_text":"Apakah kamu punya anjing?","answers":["你有狗吗"]},{"id_text":"Apakah dia lelah?","answers":["他累吗","她累吗"]},{"id_text":"Apakah kamu ingin makan?","answers":["你想吃饭吗"]},{"id_text":"Apakah ini bukumu?","answers":["这是你的书吗"]},{"id_text":"Apakah kamu di rumah sekarang?","answers":["你现在在家吗"]},{"id_text":"Apakah kalian punya kelas besok?","answers":["你们明天有课吗"]},{"id_text":"Apakah dia adalah tetanggamu?","answers":["他是你的邻居吗","她是你的邻居吗"]},{"id_text":"Apakah di sekolah ada perpustakaan?","answers":["学校里有图书馆吗"]},{"id_text":"Apakah kamu ingin pergi ke Beijing tahun ini?","answers":["你今年想去北京吗"]}]},{"title":"Latihan 6","note":"谁 / 什么 / 哪","items":[{"id_text":"Ini apa?","answers":["这是什么"]},{"id_text":"Siapa dia?","answers":["他是谁","她是谁"]},{"id_text":"Kamu suka warna apa?","answers":["你喜欢什么颜色"]},{"id_text":"Kamu orang mana?","answers":["你是哪国人"]},{"id_text":"Buku siapa ini?","answers":["这是谁的书"]},{"id_text":"Kamu ingin makan apa?","answers":["你想吃什么"]},{"id_text":"Ini kucing siapa?","answers":["这是谁的猫"]},{"id_text":"Kamu belajar di sekolah mana?","answers":["你在哪个学校学习"]},{"id_text":"Dia adalah siapa?","answers":["他是谁","她是谁"]},{"id_text":"Kamu suka minum apa?","answers":["你喜欢喝什么"]},{"id_text":"Ini tas siapa?","answers":["这是谁的包"]},{"id_text":"Kamu tinggal di mana?","answers":["你住在哪儿","你住在哪里"]},{"id_text":"Kamu ingin beli apa?","answers":["你想买什么"]},{"id_text":"Guru itu siapa?","answers":["那个老师是谁"]},{"id_text":"Kamu berasal dari mana?","answers":["你是哪里人"]},{"id_text":"Kamu belajar di sekolah mana?","answers":["你在哪个学校学习"]},{"id_text":"Sekarang kamu ada di mana?","answers":["你现在在哪儿","你现在在哪里"]},{"id_text":"Kemarin kamu bertemu siapa?","answers":["你昨天见了谁"]},{"id_text":"Besok kamu ingin makan apa?","answers":["你明天想吃什么"]},{"id_text":"Buku siapa yang ada di mejamu?","answers":["你桌子上是谁的书"]}]},{"title":"Latihan 7","note":"喜欢 + kata kerja/benda","items":[{"id_text":"Aku suka membaca buku.","answers":["我喜欢看书"]},{"id_text":"Dia suka makan buah.","answers":["他喜欢吃水果","她喜欢吃水果"]},{"id_text":"Kami suka bahasa Mandarin.","answers":["我们喜欢汉语","我们喜欢中文"]},{"id_text":"Aku tidak suka kopi.","answers":["我不喜欢咖啡"]},{"id_text":"Dia suka mendengarkan musik.","answers":["他喜欢听音乐","她喜欢听音乐"]},{"id_text":"Kami suka makan mi.","answers":["我们喜欢吃面条"]},{"id_text":"Dia suka minum teh.","answers":["他喜欢喝茶","她喜欢喝茶"]},{"id_text":"Aku suka bahasa Inggris.","answers":["我喜欢英语"]},{"id_text":"Kalian suka olahraga.","answers":["你们喜欢运动"]},{"id_text":"Aku suka kucing.","answers":["我喜欢猫"]},{"id_text":"Dia tidak suka kopi.","answers":["他不喜欢咖啡","她不喜欢咖啡"]},{"id_text":"Kami suka membaca buku.","answers":["我们喜欢看书"]},{"id_text":"Aku suka warna merah.","answers":["我喜欢红色"]},{"id_text":"Dia suka bernyanyi.","answers":["他喜欢唱歌","她喜欢唱歌"]},{"id_text":"Kamu suka guru itu.","answers":["你喜欢那个老师"]},{"id_text":"Sekarang aku suka belajar di perpustakaan.","answers":["我现在喜欢在图书馆学习"]},{"id_text":"Kemarin dia suka makan mi di rumah.","answers":["昨天他喜欢在家吃面条","昨天她喜欢在家吃面条"]},{"id_text":"Kami suka menonton film di malam hari.","answers":["我们喜欢晚上看电影"]},{"id_text":"Aku tidak suka belajar di kelas yang ramai.","answers":["我不喜欢在吵的教室学习"]},{"id_text":"Dia suka membaca buku di taman pada akhir pekan.","answers":["他喜欢周末在公园看书","她喜欢周末在公园看书"]}]},{"title":"Latihan 8","note":"在 (lokasi)","items":[{"id_text":"Aku ada di rumah.","answers":["我在家"]},{"id_text":"Dia ada di kantor.","answers":["他在办公室","她在办公室"]},{"id_text":"Buku itu ada di atas meja.","answers":["书在桌子上"]},{"id_text":"Kami ada di sekolah.","answers":["我们在学校"]},{"id_text":"Kucing itu ada di bawah kursi.","answers":["猫在椅子下面"]},{"id_text":"Aku ada di dalam kamar.","answers":["我在房间里"]},{"id_text":"Dia ada di toko.","answers":["他在商店","她在商店"]},{"id_text":"Kunci itu ada di dalam tas.","answers":["钥匙在包里"]},{"id_text":"Kami ada di luar.","answers":["我们在外面"]},{"id_text":"Anjing itu ada di depan pintu.","answers":["狗在门前面"]},{"id_text":"Dia ada di rumah.","answers":["他在家","她在家"]},{"id_text":"Buku itu ada di dalam tas.","answers":["书在包里"]},{"id_text":"Mereka ada di sekolah.","answers":["他们在学校"]},{"id_text":"Aku ada di kantor.","answers":["我在办公室"]},{"id_text":"Kucing itu ada di atas tempat tidur.","answers":["猫在床上"]},{"id_text":"Sekarang aku ada di sekolah.","answers":["我现在在学校"]},{"id_text":"Kemarin dia ada di rumah sakit.","answers":["昨天他在医院","昨天她在医院"]},{"id_text":"Besok kami ada di kantor.","answers":["我们明天在办公室"]},{"id_text":"Malam ini buku itu ada di tasku.","answers":["今晚书在我的包里"]},{"id_text":"Pagi ini kucing itu ada di halaman.","answers":["今天早上猫在院子里"]}]},{"title":"Latihan 9","note":"想 + kata kerja","items":[{"id_text":"Aku ingin pergi ke Beijing.","answers":["我想去北京"]},{"id_text":"Dia ingin belajar bahasa Mandarin.","answers":["他想学汉语","她想学汉语","他想学中文","她想学中文"]},{"id_text":"Kami ingin makan mi.","answers":["我们想吃面条"]},{"id_text":"Aku ingin minum air.","answers":["我想喝水"]},{"id_text":"Dia ingin menonton film.","answers":["他想看电影","她想看电影"]},{"id_text":"Aku ingin membeli buku baru.","answers":["我想买新书"]},{"id_text":"Dia ingin pulang.","answers":["他想回家","她想回家"]},{"id_text":"Kami ingin istirahat.","answers":["我们想休息"]},{"id_text":"Aku ingin melihat kucing itu.","answers":["我想看那只猫"]},{"id_text":"Dia ingin minum teh.","answers":["他想喝茶","她想喝茶"]},{"id_text":"Kalian ingin makan mi.","answers":["你们想吃面条"]},{"id_text":"Aku ingin pergi ke sekolah.","answers":["我想去学校"]},{"id_text":"Dia ingin membaca buku ini.","answers":["他想看这本书","她想看这本书"]},{"id_text":"Kami ingin belajar bahasa Inggris.","answers":["我们想学英语"]},{"id_text":"Aku ingin bertemu guru itu.","answers":["我想见那个老师"]},{"id_text":"Sekarang aku ingin belajar di rumah.","answers":["我现在想在家学习"]},{"id_text":"Besok dia ingin pergi ke sekolah lebih awal.","answers":["他明天想早点儿去学校","她明天想早点儿去学校"]},{"id_text":"Malam ini kami ingin menonton film di bioskop.","answers":["我们今晚想在电影院看电影"]},{"id_text":"Kemarin aku ingin makan mi di restoran itu.","answers":["我昨天想在那家餐馆吃面条"]},{"id_text":"Akhir pekan ini dia ingin membaca buku di taman.","answers":["这个周末他想在公园看书","这个周末她想在公园看书"]}]},{"title":"Latihan 10","note":"几 / 多少","items":[{"id_text":"Kamu punya berapa buku?","answers":["你有几本书"]},{"id_text":"Sekarang jam berapa?","answers":["现在几点"]},{"id_text":"Berapa harga ini?","answers":["这个多少钱"]},{"id_text":"Ada berapa orang?","answers":["有几个人"]},{"id_text":"Kamu punya berapa uang?","answers":["你有多少钱"]},{"id_text":"Kamu punya berapa anjing?","answers":["你有几只狗"]},{"id_text":"Baju ini berapa harganya?","answers":["这件衣服多少钱"]},{"id_text":"Ada berapa kursi?","answers":["有几把椅子"]},{"id_text":"Kamu punya berapa teman?","answers":["你有几个朋友"]},{"id_text":"Sekarang tanggal berapa?","answers":["今天几号"]},{"id_text":"Kamu berumur berapa?","answers":["你几岁"]},{"id_text":"Ada berapa murid di kelas?","answers":["班里有几个学生"]},{"id_text":"Tiket ini berapa harganya?","answers":["这张票多少钱"]},{"id_text":"Ada berapa buku di atas meja?","answers":["桌子上有几本书"]},{"id_text":"Kamu ingin beli berapa apel?","answers":["你想买几个苹果"]},{"id_text":"Sekarang jam berapa di sana?","answers":["那儿现在几点"]},{"id_text":"Kamu punya berapa buku di rumah?","answers":["你家里有几本书"]},{"id_text":"Besok ada berapa murid di kelas?","answers":["明天班里有几个学生"]},{"id_text":"Kemarin kamu membeli berapa apel di toko itu?","answers":["你昨天在那家商店买了几个苹果"]},{"id_text":"Mobil itu di sana harganya berapa?","answers":["那辆车在那儿多少钱"]}]}],"2":[{"title":"Latihan 1","note":"了 (aksi selesai)","items":[{"id_text":"Aku sudah makan.","answers":["我吃了","我吃饭了"]},{"id_text":"Dia sudah pergi ke sekolah.","answers":["他去学校了","她去学校了"]},{"id_text":"Kami sudah membeli buku itu.","answers":["我们买那本书了","我们买了那本书"]},{"id_text":"Aku sudah selesai menulis surat.","answers":["我写完信了","我写完了信"]},{"id_text":"Dia sudah bangun.","answers":["他起床了","她起床了"]},{"id_text":"Kami sudah selesai belajar.","answers":["我们学完了"]},{"id_text":"Dia sudah menulis surat itu.","answers":["他写了那封信","她写了那封信"]},{"id_text":"Aku sudah membeli tiket itu.","answers":["我买了那张票"]},{"id_text":"Dia sudah pulang.","answers":["他回家了","她回家了"]},{"id_text":"Kami sudah makan malam.","answers":["我们吃晚饭了"]},{"id_text":"Aku sudah menonton film itu.","answers":["我看了那个电影"]},{"id_text":"Dia sudah mencuci baju.","answers":["他洗衣服了","她洗衣服了"]},{"id_text":"Kami sudah tiba di sekolah.","answers":["我们到学校了"]},{"id_text":"Aku sudah membaca buku itu.","answers":["我看了那本书"]},{"id_text":"Dia sudah membeli roti.","answers":["他买面包了","她买面包了"]},{"id_text":"Aku tadi malam belajar di rumah.","answers":["我昨晚在家学习了"]},{"id_text":"Kami hari ini bekerja di kantor.","answers":["我们今天在办公室工作了"]},{"id_text":"Aku kemarin membeli buku itu di toko itu.","answers":["我昨天在那家商店买了那本书"]},{"id_text":"Dia tadi malam menonton film di rumah temannya.","answers":["他昨晚在朋友家看电影了","她昨晚在朋友家看电影了"]},{"id_text":"Kami hari ini makan siang di sekolah.","answers":["我们今天在学校吃午饭了"]}]},{"title":"Latihan 2","note":"在 + kata kerja (sedang)","items":[{"id_text":"Aku sedang belajar bahasa Mandarin.","answers":["我在学汉语","我在学中文"]},{"id_text":"Dia sedang memasak.","answers":["他在做饭","她在做饭"]},{"id_text":"Kami sedang menunggu bis.","answers":["我们在等公共汽车"]},{"id_text":"Aku sedang menulis surat.","answers":["我在写信"]},{"id_text":"Dia sedang mendengarkan musik.","answers":["他在听音乐","她在听音乐"]},{"id_text":"Aku sedang membaca koran.","answers":["我在看报纸"]},{"id_text":"Dia sedang menulis surat.","answers":["他在写信","她在写信"]},{"id_text":"Kami sedang berbicara dengan guru.","answers":["我们在跟老师说话"]},{"id_text":"Aku sedang mencuci baju.","answers":["我在洗衣服"]},{"id_text":"Dia sedang tidur.","answers":["他在睡觉","她在睡觉"]},{"id_text":"Kami sedang menonton film.","answers":["我们在看电影"]},{"id_text":"Aku sedang membeli sayur.","answers":["我在买菜"]},{"id_text":"Dia sedang bermain bola.","answers":["他在打球","她在打球"]},{"id_text":"Kami sedang menunggu dia.","answers":["我们在等他","我们在等她"]},{"id_text":"Aku sedang belajar bahasa Inggris.","answers":["我在学英语"]},{"id_text":"Aku sekarang sedang belajar di kamar.","answers":["我现在在房间里学习"]},{"id_text":"Dia sedang bekerja di kantor sekarang.","answers":["他现在在办公室工作","她现在在办公室工作"]},{"id_text":"Kami sedang makan malam di rumah.","answers":["我们在家吃晚饭"]},{"id_text":"Dia sedang menunggu di depan sekolah.","answers":["他在学校门口等","她在学校门口等"]},{"id_text":"Aku sedang belajar bahasa Mandarin di perpustakaan.","answers":["我在图书馆学汉语","我在图书馆学中文"]}]},{"title":"Latihan 3","note":"会 / 能 / 可以","items":[{"id_text":"Aku bisa berenang.","answers":["我会游泳"]},{"id_text":"Dia tidak bisa datang besok.","answers":["他明天不能来","她明天不能来"]},{"id_text":"Kamu boleh masuk.","answers":["你可以进来"]},{"id_text":"Aku bisa memasak masakan Tiongkok.","answers":["我会做中国菜"]},{"id_text":"Kami bisa selesai hari ini.","answers":["我们今天能做完"]},{"id_text":"Aku bisa menulis huruf Mandarin.","answers":["我会写汉字"]},{"id_text":"Dia tidak bisa datang hari ini.","answers":["他今天不能来","她今天不能来"]},{"id_text":"Kamu boleh duduk di sini.","answers":["你可以坐在这儿","你可以坐在这里"]},{"id_text":"Aku bisa mengendarai mobil.","answers":["我会开车"]},{"id_text":"Kami bisa selesai besok.","answers":["我们明天能做完"]},{"id_text":"Kamu boleh pergi sekarang.","answers":["你现在可以走了"]},{"id_text":"Dia bisa bermain piano.","answers":["他会弹钢琴","她会弹钢琴"]},{"id_text":"Aku tidak bisa pergi besok.","answers":["我明天不能去"]},{"id_text":"Kami boleh menggunakan kamar ini.","answers":["我们可以用这个房间"]},{"id_text":"Dia bisa berbicara tiga bahasa.","answers":["他会说三种语言","她会说三种语言"]},{"id_text":"Aku besok bisa datang ke sekolah.","answers":["我明天能来学校"]},{"id_text":"Dia bisa berbicara bahasa Mandarin di kantor.","answers":["他在办公室会说汉语","她在办公室会说汉语"]},{"id_text":"Kami hari ini bisa selesai di rumah.","answers":["我们今天在家能做完"]},{"id_text":"Kamu boleh belajar di ruangan ini.","answers":["你可以在这个房间学习"]},{"id_text":"Dia besok tidak bisa datang ke kantor.","answers":["他明天不能来办公室","她明天不能来办公室"]}]},{"title":"Latihan 4","note":"比 (perbandingan)","items":[{"id_text":"Dia lebih tinggi daripada aku.","answers":["他比我高","她比我高"]},{"id_text":"Kopi ini lebih enak daripada teh itu.","answers":["这个咖啡比那个茶好喝"]},{"id_text":"Temanku lebih muda daripada aku.","answers":["我朋友比我小"]},{"id_text":"Hari ini lebih panas daripada kemarin.","answers":["今天比昨天热"]},{"id_text":"Buku ini lebih tebal daripada itu.","answers":["这本书比那本厚"]},{"id_text":"Rumahku lebih besar daripada rumah dia.","answers":["我的家比他的家大","我的家比她的家大"]},{"id_text":"Dia lebih pintar daripada aku.","answers":["他比我聪明","她比我聪明"]},{"id_text":"Kereta ini lebih cepat daripada bis itu.","answers":["这辆火车比那辆公共汽车快"]},{"id_text":"Kamu lebih tinggi daripada temanmu.","answers":["你比你的朋友高"]},{"id_text":"Musim panas lebih panas daripada musim semi.","answers":["夏天比春天热"]},{"id_text":"Kota ini lebih ramai daripada kota itu.","answers":["这个城市比那个城市热闹"]},{"id_text":"Aku lebih sibuk daripada kemarin.","answers":["我比昨天忙"]},{"id_text":"Buku ini lebih menarik daripada itu.","answers":["这本书比那本有意思"]},{"id_text":"Dia lebih rajin daripada aku.","answers":["他比我努力","她比我努力"]},{"id_text":"Harga ini lebih murah daripada itu.","answers":["这个价格比那个便宜"]},{"id_text":"Sekolah ini lebih besar daripada sekolah lamaku.","answers":["这个学校比我以前的学校大"]},{"id_text":"Hari ini cuacanya lebih baik daripada kemarin di sini.","answers":["今天这儿的天气比昨天好"]},{"id_text":"Kelasku lebih ramai daripada kelasmu.","answers":["我的班比你的班热闹"]},{"id_text":"Restoran ini lebih jauh daripada yang tadi.","answers":["这家饭馆比刚才那家远"]},{"id_text":"Pekerjaanku lebih sulit daripada pekerjaannya di kantor.","answers":["我的工作比他在办公室的工作难","我的工作比她在办公室的工作难"]}]},{"title":"Latihan 5","note":"因为...所以","items":[{"id_text":"Karena aku sakit, jadi aku tidak pergi ke sekolah.","answers":["因为我生病了,所以我没去学校"]},{"id_text":"Karena dia sibuk, jadi dia tidak bisa datang.","answers":["因为他很忙,所以他不能来","因为她很忙,所以她不能来"]},{"id_text":"Karena hari ini hujan, jadi kami tinggal di rumah.","answers":["因为今天下雨,所以我们在家","因为今天下雨,所以我们呆在家里"]},{"id_text":"Karena aku lapar, jadi aku makan mi.","answers":["因为我饿了,所以我吃面条"]},{"id_text":"Karena dia belajar rajin, jadi nilainya bagus.","answers":["因为他学习很努力,所以成绩很好","因为她学习很努力,所以成绩很好"]},{"id_text":"Karena dia lelah, jadi dia tidur lebih awal.","answers":["因为他很累,所以他早点儿睡觉了","因为她很累,所以她早点儿睡觉了"]},{"id_text":"Karena harganya mahal, jadi aku tidak membelinya.","answers":["因为很贵,所以我没买"]},{"id_text":"Karena kami terlambat, jadi kami berlari.","answers":["因为我们迟到了,所以我们跑了"]},{"id_text":"Karena cuaca dingin, jadi dia memakai jaket.","answers":["因为天气冷,所以他穿外套了","因为天气冷,所以她穿外套了"]},{"id_text":"Karena aku sibuk, jadi aku tidak bisa datang.","answers":["因为我很忙,所以我不能来"]},{"id_text":"Karena dia rajin belajar, jadi dia lulus ujian.","answers":["因为他努力学习,所以他通过了考试","因为她努力学习,所以她通过了考试"]},{"id_text":"Karena jalan macet, jadi kami terlambat.","answers":["因为路上堵车,所以我们迟到了"]},{"id_text":"Karena aku lelah, jadi aku ingin istirahat.","answers":["因为我很累,所以我想休息"]},{"id_text":"Karena tokonya tutup, jadi kami tidak bisa membeli.","answers":["因为商店关门了,所以我们不能买"]},{"id_text":"Karena dia sakit, jadi dia tidak masuk kerja.","answers":["因为他生病了,所以他没上班","因为她生病了,所以她没上班"]},{"id_text":"Karena aku belajar di perpustakaan kemarin, jadi aku mengerti pelajaran itu.","answers":["因为我昨天在图书馆学习了,所以我懂那节课"]},{"id_text":"Karena dia bekerja di kantor sampai malam, jadi dia lelah.","answers":["因为他在办公室工作到很晚,所以他很累","因为她在办公室工作到很晚,所以她很累"]},{"id_text":"Karena kami tidak punya waktu pagi ini, jadi kami tidak sarapan.","answers":["因为我们今天早上没有时间,所以没吃早饭"]},{"id_text":"Karena hari ini hujan di sini, jadi kami tinggal di rumah.","answers":["因为今天这儿下雨,所以我们在家"]},{"id_text":"Karena aku lupa buku di sekolah, jadi aku tidak bisa mengerjakan tugas di rumah.","answers":["因为我把书忘在学校了,所以我不能在家做作业"]}]},{"title":"Latihan 6","note":"觉得 + kata sifat","items":[{"id_text":"Aku rasa film ini menarik.","answers":["我觉得这个电影很有意思"]},{"id_text":"Dia rasa makanan ini enak.","answers":["他觉得这个菜很好吃","她觉得这个菜很好吃"]},{"id_text":"Kami rasa ujian ini sulit.","answers":["我们觉得这个考试很难"]},{"id_text":"Aku rasa kamar ini kecil.","answers":["我觉得这个房间很小"]},{"id_text":"Dia rasa buku itu membosankan.","answers":["他觉得那本书很无聊","她觉得那本书很无聊"]},{"id_text":"Aku rasa cuaca hari ini bagus.","answers":["我觉得今天天气很好"]},{"id_text":"Dia rasa pekerjaan ini sulit.","answers":["他觉得这个工作很难","她觉得这个工作很难"]},{"id_text":"Kami rasa restoran ini enak.","answers":["我们觉得这家饭馆很好吃"]},{"id_text":"Aku rasa dia baik.","answers":["我觉得他很好","我觉得她很好"]},{"id_text":"Dia rasa harganya mahal.","answers":["他觉得这个很贵","她觉得这个很贵"]},{"id_text":"Kami rasa liburan ini menyenangkan.","answers":["我们觉得这个假期很开心"]},{"id_text":"Aku rasa lagu ini bagus.","answers":["我觉得这首歌很好听"]},{"id_text":"Dia rasa kamar ini nyaman.","answers":["他觉得这个房间很舒服","她觉得这个房间很舒服"]},{"id_text":"Kami rasa jalannya jauh.","answers":["我们觉得路很远"]},{"id_text":"Aku rasa ujian ini mudah.","answers":["我觉得这个考试很容易"]},{"id_text":"Aku rasa belajar di kelas ini menyenangkan.","answers":["我觉得在这个班学习很开心"]},{"id_text":"Dia rasa bekerja di kantor itu melelahkan.","answers":["他觉得在那个办公室工作很累","她觉得在那个办公室工作很累"]},{"id_text":"Kami rasa tinggal di kota ini nyaman.","answers":["我们觉得住在这个城市很舒服"]},{"id_text":"Aku rasa makan di restoran itu mahal.","answers":["我觉得在那家饭馆吃饭很贵"]},{"id_text":"Dia rasa belajar bahasa Mandarin di sini menarik.","answers":["他觉得在这儿学汉语很有意思","她觉得在这儿学汉语很有意思"]}]},{"title":"Latihan 7","note":"别 (larangan)","items":[{"id_text":"Jangan makan di sini.","answers":["别在这儿吃东西","别在这里吃东西"]},{"id_text":"Jangan khawatir.","answers":["别担心"]},{"id_text":"Jangan lupa bawa payung.","answers":["别忘了带雨伞"]},{"id_text":"Jangan buang sampah di sini.","answers":["别在这儿扔垃圾","别在这里扔垃圾"]},{"id_text":"Jangan pergi terlalu larut.","answers":["别去得太晚","别太晚走"]},{"id_text":"Jangan bicara terlalu keras.","answers":["别说得太大声"]},{"id_text":"Jangan menangis.","answers":["别哭"]},{"id_text":"Jangan pergi sendirian.","answers":["别一个人去"]},{"id_text":"Jangan makan terlalu banyak.","answers":["别吃太多"]},{"id_text":"Jangan tidur terlalu larut.","answers":["别睡得太晚"]},{"id_text":"Jangan lupa membawa kunci.","answers":["别忘了带钥匙"]},{"id_text":"Jangan berlari di sini.","answers":["别在这儿跑","别在这里跑"]},{"id_text":"Jangan menyentuh itu.","answers":["别碰那个"]},{"id_text":"Jangan bicara saat makan.","answers":["别一边吃饭一边说话"]},{"id_text":"Jangan marah.","answers":["别生气"]},{"id_text":"Jangan belajar terlalu larut di malam hari.","answers":["别晚上学习得太晚"]},{"id_text":"Jangan bermain di jalan itu.","answers":["别在那条路上玩"]},{"id_text":"Jangan makan di kelas.","answers":["别在教室吃东西"]},{"id_text":"Jangan pergi ke sana sendirian malam ini.","answers":["别今晚一个人去那儿"]},{"id_text":"Jangan tidur di kantor.","answers":["别在办公室睡觉"]}]},{"title":"Latihan 8","note":"得 (keharusan)","items":[{"id_text":"Aku harus selesaikan pekerjaan rumahku.","answers":["我得做完作业"]},{"id_text":"Dia harus pergi ke rumah sakit.","answers":["他得去医院","她得去医院"]},{"id_text":"Kami harus bangun pagi-pagi.","answers":["我们得早起"]},{"id_text":"Aku harus belajar untuk ujian.","answers":["我得为考试学习","我得准备考试"]},{"id_text":"Dia harus pulang sebelum jam sembilan.","answers":["他得九点以前回家","她得九点以前回家"]},{"id_text":"Aku harus pergi ke kantor pos.","answers":["我得去邮局"]},{"id_text":"Dia harus menyelesaikan pekerjaan ini.","answers":["他得做完这个工作","她得做完这个工作"]},{"id_text":"Kami harus membeli tiket sekarang.","answers":["我们得现在买票"]},{"id_text":"Aku harus belajar bahasa Mandarin setiap hari.","answers":["我得每天学汉语"]},{"id_text":"Dia harus pergi ke bandara.","answers":["他得去机场","她得去机场"]},{"id_text":"Kami harus menunggu di sini.","answers":["我们得在这儿等","我们得在这里等"]},{"id_text":"Aku harus mencuci baju hari ini.","answers":["我今天得洗衣服"]},{"id_text":"Dia harus membayar uang itu.","answers":["他得付那笔钱","她得付那笔钱"]},{"id_text":"Kami harus berangkat lebih awal.","answers":["我们得早点儿出发"]},{"id_text":"Aku harus menelepon ibu.","answers":["我得给妈妈打电话"]},{"id_text":"Aku harus belajar di perpustakaan sore ini.","answers":["我今天下午得在图书馆学习"]},{"id_text":"Dia harus bekerja di kantor besok.","answers":["他明天得在办公室工作","她明天得在办公室工作"]},{"id_text":"Kami harus pulang dari sekolah sebelum jam lima.","answers":["我们得五点以前从学校回家"]},{"id_text":"Aku harus membeli buku di toko itu hari ini.","answers":["我今天得在那家商店买书"]},{"id_text":"Dia harus menyelesaikan pekerjaan itu di rumah malam ini.","answers":["他今晚得在家做完那个工作","她今晚得在家做完那个工作"]}]},{"title":"Latihan 9","note":"先...再","items":[{"id_text":"Kamu cuci tangan dulu, lalu makan.","answers":["你先洗手,再吃饭"]},{"id_text":"Aku selesaikan pekerjaan dulu, lalu istirahat.","answers":["我先做完工作,再休息"]},{"id_text":"Kita beli tiket dulu, lalu masuk.","answers":["我们先买票,再进去"]},{"id_text":"Dia mandi dulu, lalu tidur.","answers":["他先洗澡,再睡觉","她先洗澡,再睡觉"]},{"id_text":"Kamu pikirkan dulu, lalu jawab.","answers":["你先想,再回答"]},{"id_text":"Aku selesaikan tugas dulu, lalu bermain.","answers":["我先做完作业,再玩儿"]},{"id_text":"Kita makan dulu, lalu pergi ke bioskop.","answers":["我们先吃饭,再去电影院"]},{"id_text":"Dia belajar dulu, lalu tidur.","answers":["他先学习,再睡觉","她先学习,再睡觉"]},{"id_text":"Kamu ganti baju dulu, lalu keluar.","answers":["你先换衣服,再出去"]},{"id_text":"Aku baca surat ini dulu, lalu jawab.","answers":["我先看这封信,再回答"]},{"id_text":"Kita bayar dulu, lalu ambil barangnya.","answers":["我们先付钱,再拿东西"]},{"id_text":"Dia cuci tangan dulu, lalu makan.","answers":["他先洗手,再吃饭","她先洗手,再吃饭"]},{"id_text":"Kamu istirahat dulu, lalu bekerja lagi.","answers":["你先休息,再工作"]},{"id_text":"Aku telepon dia dulu, lalu berangkat.","answers":["我先给他打电话,再出发","我先给她打电话,再出发"]},{"id_text":"Kita lihat dulu, lalu memutuskan.","answers":["我们先看,再决定"]},{"id_text":"Kamu belajar di kelas dulu, lalu pulang ke rumah.","answers":["你先在班里学习,再回家"]},{"id_text":"Aku bekerja di kantor dulu, lalu makan siang.","answers":["我先在办公室工作,再吃午饭"]},{"id_text":"Kita ke sekolah dulu, lalu ke perpustakaan.","answers":["我们先去学校,再去图书馆"]},{"id_text":"Dia mandi di rumah dulu, lalu pergi ke pesta.","answers":["他先在家洗澡,再去聚会","她先在家洗澡,再去聚会"]},{"id_text":"Kamu selesaikan pekerjaan rumah di kamar dulu, lalu bermain di luar.","answers":["你先在房间里做完作业,再在外面玩"]}]},{"title":"Latihan 10","note":"已经...了 / 还没","items":[{"id_text":"Aku sudah selesai makan.","answers":["我已经吃完了"]},{"id_text":"Dia belum bangun.","answers":["他还没起床","她还没起床"]},{"id_text":"Sudah jam sembilan, tapi dia masih belum bangun.","answers":["已经九点了,可是他还没起床","已经九点了,但是他还没起床","已经九点了,可是她还没起床","已经九点了,但是她还没起床"]},{"id_text":"Aku sudah membaca buku itu.","answers":["我已经看那本书了","我已经看了那本书"]},{"id_text":"Dia belum makan.","answers":["他还没吃饭","她还没吃饭"]},{"id_text":"Aku sudah selesai bekerja.","answers":["我已经做完工作了"]},{"id_text":"Dia belum menelepon aku.","answers":["他还没给我打电话","她还没给我打电话"]},{"id_text":"Sudah jam tujuh, tapi kami belum makan.","answers":["已经七点了,可是我们还没吃饭","已经七点了,但是我们还没吃饭"]},{"id_text":"Aku sudah menyelesaikan pekerjaan rumah.","answers":["我已经做完作业了"]},{"id_text":"Dia belum menjawab suratku.","answers":["他还没回我的信","她还没回我的信"]},{"id_text":"Kami sudah membeli tiketnya.","answers":["我们已经买票了"]},{"id_text":"Aku belum menonton film itu.","answers":["我还没看那个电影"]},{"id_text":"Sudah jam sepuluh, tapi dia belum tidur.","answers":["已经十点了,可是他还没睡觉","已经十点了,可是她还没睡觉"]},{"id_text":"Kami sudah tiba di rumah.","answers":["我们已经到家了"]},{"id_text":"Aku belum makan pagi.","answers":["我还没吃早饭"]},{"id_text":"Aku sudah belajar di perpustakaan tadi pagi.","answers":["我今天早上已经在图书馆学习了"]},{"id_text":"Dia belum pulang dari kantor.","answers":["他还没从办公室回家","她还没从办公室回家"]},{"id_text":"Kami sudah makan malam di rumah.","answers":["我们已经在家吃晚饭了"]},{"id_text":"Sudah jam sembilan malam, tapi dia belum tiba di rumah.","answers":["已经晚上九点了,可是他还没到家","已经晚上九点了,但是他还没到家","已经晚上九点了,可是她还没到家","已经晚上九点了,但是她还没到家"]},{"id_text":"Aku sudah membeli tiket di stasiun tadi.","answers":["我刚才已经在车站买了票"]}]}],"3":[{"title":"Latihan 1","note":"把-sentence","items":[{"id_text":"Tolong taruh buku itu di atas meja.","answers":["请把那本书放在桌子上"]},{"id_text":"Aku sudah menutup pintu itu.","answers":["我把那扇门关了","我把那扇门关上了"]},{"id_text":"Tolong berikan air itu padaku.","answers":["请把那杯水给我"]},{"id_text":"Dia sudah menulis kalimat itu di papan.","answers":["他把那个句子写在黑板上了","她把那个句子写在黑板上了"]},{"id_text":"Aku sudah menaruh kunci itu di tas.","answers":["我把那把钥匙放在包里了"]},{"id_text":"Tolong taruh baju itu di dalam lemari.","answers":["请把那件衣服放在柜子里"]},{"id_text":"Aku sudah membuka jendela itu.","answers":["我把那扇窗户打开了"]},{"id_text":"Tolong berikan kunci itu padaku.","answers":["请把那把钥匙给我"]},{"id_text":"Dia sudah membersihkan kamar itu.","answers":["他把那个房间打扫了","她把那个房间打扫了"]},{"id_text":"Aku sudah memasukkan uang itu ke tas.","answers":["我把那笔钱放进包里了"]},{"id_text":"Tolong taruh piring itu di dapur.","answers":["请把那个盘子放在厨房"]},{"id_text":"Dia sudah mengembalikan buku itu ke perpustakaan.","answers":["他把那本书还给图书馆了","她把那本书还给图书馆了"]},{"id_text":"Aku sudah memberikan tiket itu padanya.","answers":["我把那张票给他了","我把那张票给她了"]},{"id_text":"Tolong pindahkan meja itu ke sana.","answers":["请把那张桌子搬到那儿","请把那张桌子搬到那里"]},{"id_text":"Dia sudah menaruh tasnya di kursi.","answers":["他把书包放在椅子上了","她把书包放在椅子上了"]},{"id_text":"Tolong taruh sepatu itu di depan pintu.","answers":["请把那双鞋放在门口"]},{"id_text":"Aku sudah menaruh buku itu di rak sekolah.","answers":["我把那本书放在学校的书架上了"]},{"id_text":"Dia sudah menutup jendela kamar tadi malam.","answers":["他昨晚把房间的窗户关了","她昨晚把房间的窗户关了"]},{"id_text":"Tolong bawa kunci itu ke kantor besok.","answers":["请明天把那把钥匙带到办公室"]},{"id_text":"Kami sudah menaruh meja itu di ruang tamu.","answers":["我们把那张桌子放在客厅了"]}]},{"title":"Latihan 2","note":"被 (pasif)","items":[{"id_text":"Kue itu sudah dimakan olehnya.","answers":["蛋糕被他吃了","蛋糕被她吃了"]},{"id_text":"Sepeda itu dicuri oleh seseorang.","answers":["自行车被人偷了"]},{"id_text":"Gelas itu dipecahkan oleh temanku.","answers":["杯子被我朋友打破了"]},{"id_text":"Surat itu sudah dikirim olehnya.","answers":["信被他寄了","信被她寄了"]},{"id_text":"Pintu itu dibuka oleh angin.","answers":["门被风吹开了"]},{"id_text":"Baju itu sudah dicuci olehku.","answers":["衣服被我洗了"]},{"id_text":"Uang itu telah dicuri oleh seseorang.","answers":["钱被人偷了"]},{"id_text":"Buku itu dirusak oleh anak itu.","answers":["书被那个孩子弄坏了"]},{"id_text":"Kue itu sudah dipotong olehnya.","answers":["蛋糕被他切了","蛋糕被她切了"]},{"id_text":"Jendela itu dipecahkan oleh bola.","answers":["窗户被球打破了"]},{"id_text":"Rencananya sudah diubah olehnya.","answers":["计划被他改了","计划被她改了"]},{"id_text":"Mobil itu diparkir oleh ayahku.","answers":["车被我爸爸停好了"]},{"id_text":"Makanan itu sudah dihabiskan oleh mereka.","answers":["食物被他们吃完了"]},{"id_text":"Kesalahannya sudah diperbaiki olehku.","answers":["错误被我改正了"]},{"id_text":"Barang itu sudah dibeli olehnya.","answers":["东西被他买走了","东西被她买走了"]},{"id_text":"Kue itu sudah dimakan oleh anak-anak di pesta tadi malam.","answers":["蛋糕昨晚在聚会上被孩子们吃了"]},{"id_text":"Sepeda itu dicuri di depan sekolah kemarin.","answers":["自行车昨天在学校门口被偷了"]},{"id_text":"Baju itu dikotori oleh air di kamar mandi.","answers":["衣服在浴室里被水弄脏了"]},{"id_text":"Pintu kantor itu dibuka oleh angin tadi pagi.","answers":["办公室的门今天早上被风吹开了"]},{"id_text":"Surat itu sudah dikirim olehnya dari kantor pos kemarin.","answers":["信昨天在邮局被他寄了","信昨天在邮局被她寄了"]}]},{"title":"Latihan 3","note":"虽然...但是/还是","items":[{"id_text":"Walaupun hujan, kami tetap pergi ke sekolah.","answers":["虽然下雨,但是我们还是去学校","虽然下雨,我们还是去学校"]},{"id_text":"Walaupun dia lelah, dia tetap bekerja.","answers":["虽然他很累,但是他还是工作","虽然她很累,但是她还是工作"]},{"id_text":"Walaupun harganya mahal, aku tetap membelinya.","answers":["虽然很贵,但是我还是买了"]},{"id_text":"Walaupun sulit, dia tetap belajar dengan rajin.","answers":["虽然很难,但是他还是努力学习","虽然很难,但是她还是努力学习"]},{"id_text":"Walaupun sudah malam, mereka tetap belum tidur.","answers":["虽然已经很晚了,但是他们还没睡觉"]},{"id_text":"Walaupun makanannya pedas, aku tetap makan.","answers":["虽然菜很辣,但是我还是吃了"]},{"id_text":"Walaupun dia miskin, dia tetap bahagia.","answers":["虽然他很穷,但是他还是很快乐","虽然她很穷,但是她还是很快乐"]},{"id_text":"Walaupun jaraknya jauh, kami tetap datang.","answers":["虽然很远,但是我们还是来了"]},{"id_text":"Walaupun dia takut, dia tetap mencoba.","answers":["虽然他很害怕,但是他还是试了","虽然她很害怕,但是她还是试了"]},{"id_text":"Walaupun waktunya sedikit, kami berhasil menyelesaikannya.","answers":["虽然时间不多,但是我们还是做完了"]},{"id_text":"Walaupun bahasanya sulit, dia tetap belajar dengan senang.","answers":["虽然语言很难,但是他还是学得很开心","虽然语言很难,但是她还是学得很开心"]},{"id_text":"Walaupun uangnya sedikit, mereka tetap bahagia.","answers":["虽然钱不多,但是他们还是很快乐"]},{"id_text":"Walaupun cuacanya panas, kami tetap berolahraga.","answers":["虽然天气很热,但是我们还是运动了"]},{"id_text":"Walaupun pekerjaannya berat, dia tetap semangat.","answers":["虽然工作很累,但是他还是很有精神","虽然工作很累,但是她还是很有精神"]},{"id_text":"Walaupun sudah larut, dia masih belajar.","answers":["虽然已经很晚了,但是他还在学习","虽然已经很晚了,但是她还在学习"]},{"id_text":"Walaupun hujan di luar, kami tetap belajar di sekolah.","answers":["虽然外面下雨,但是我们还是在学校学习"]},{"id_text":"Walaupun dia lelah setelah bekerja di kantor, dia tetap memasak di rumah.","answers":["虽然他在办公室工作很累,但是他还是在家做饭","虽然她在办公室工作很累,但是她还是在家做饭"]},{"id_text":"Walaupun sudah malam, mereka tetap belajar di perpustakaan.","answers":["虽然已经很晚了,但是他们还是在图书馆学习"]},{"id_text":"Walaupun jauh dari rumah, dia tetap pergi ke sekolah itu setiap hari.","answers":["虽然离家很远,但是他每天还是去那个学校","虽然离家很远,但是她每天还是去那个学校"]},{"id_text":"Walaupun harganya mahal di toko itu, aku tetap membelinya kemarin.","answers":["虽然那家商店的东西很贵,但是我昨天还是买了"]}]},{"title":"Latihan 4","note":"一边...一边","items":[{"id_text":"Dia sambil makan sambil menonton TV.","answers":["他一边吃饭一边看电视","她一边吃饭一边看电视"]},{"id_text":"Aku sambil berjalan sambil mendengarkan musik.","answers":["我一边走路一边听音乐"]},{"id_text":"Kami sambil belajar sambil mendengarkan lagu.","answers":["我们一边学习一边听歌"]},{"id_text":"Dia sambil memasak sambil menelepon.","answers":["他一边做饭一边打电话","她一边做饭一边打电话"]},{"id_text":"Aku sambil minum kopi sambil membaca koran.","answers":["我一边喝咖啡一边看报纸"]},{"id_text":"Aku sambil bekerja sambil belajar.","answers":["我一边工作一边学习"]},{"id_text":"Dia sambil menyanyi sambil menari.","answers":["他一边唱歌一边跳舞","她一边唱歌一边跳舞"]},{"id_text":"Kami sambil berbicara sambil berjalan.","answers":["我们一边说话一边走路"]},{"id_text":"Dia sambil membaca sambil menulis catatan.","answers":["他一边看书一边写笔记","她一边看书一边写笔记"]},{"id_text":"Aku sambil menonton TV sambil makan camilan.","answers":["我一边看电视一边吃零食"]},{"id_text":"Kami sambil bekerja sambil mendengarkan radio.","answers":["我们一边工作一边听收音机"]},{"id_text":"Dia sambil memasak sambil mencuci piring.","answers":["他一边做饭一边洗碗","她一边做饭一边洗碗"]},{"id_text":"Aku sambil belajar sambil minum kopi.","answers":["我一边学习一边喝咖啡"]},{"id_text":"Kami sambil jalan-jalan sambil berbicara.","answers":["我们一边散步一边聊天"]},{"id_text":"Dia sambil mengemudi sambil menelepon.","answers":["他一边开车一边打电话","她一边开车一边打电话"]},{"id_text":"Dia sambil bekerja di kantor sambil mendengarkan musik.","answers":["他在办公室一边工作一边听音乐","她在办公室一边工作一边听音乐"]},{"id_text":"Aku sambil belajar di perpustakaan sambil minum kopi.","answers":["我在图书馆一边学习一边喝咖啡"]},{"id_text":"Kami sambil menunggu di stasiun sambil mengobrol.","answers":["我们在车站一边等一边聊天"]},{"id_text":"Dia sambil memasak di dapur sambil menonton video.","answers":["他在厨房一边做饭一边看视频","她在厨房一边做饭一边看视频"]},{"id_text":"Aku sambil berjalan di taman sambil menelepon.","answers":["我在公园一边走路一边打电话"]}]},{"title":"Latihan 5","note":"越来越","items":[{"id_text":"Cuacanya semakin lama semakin panas.","answers":["天气越来越热了","天气越来越热"]},{"id_text":"Bahasa Mandarinnya semakin lama semakin bagus.","answers":["他的汉语越来越好了","她的汉语越来越好了"]},{"id_text":"Kotanya semakin lama semakin ramai.","answers":["这个城市越来越热闹了"]},{"id_text":"Pekerjaannya semakin lama semakin banyak.","answers":["工作越来越多了"]},{"id_text":"Anak itu semakin lama semakin tinggi.","answers":["这个孩子越来越高了"]},{"id_text":"Dia semakin lama semakin cantik.","answers":["她越来越漂亮了"]},{"id_text":"Harga rumah semakin lama semakin mahal.","answers":["房价越来越贵了"]},{"id_text":"Kesehatannya semakin lama semakin baik.","answers":["他的身体越来越好了","她的身体越来越好了"]},{"id_text":"Jalanan semakin lama semakin ramai.","answers":["路上越来越热闹了"]},{"id_text":"Bahasa Inggrisnya semakin lama semakin lancar.","answers":["他的英语越来越流利了","她的英语越来越流利了"]},{"id_text":"Musim dingin semakin lama semakin dingin.","answers":["冬天越来越冷了"]},{"id_text":"Perusahaan itu semakin lama semakin besar.","answers":["那家公司越来越大了"]},{"id_text":"Dia semakin lama semakin sibuk.","answers":["他越来越忙了","她越来越忙了"]},{"id_text":"Kotanya semakin lama semakin bersih.","answers":["这个城市越来越干净了"]},{"id_text":"Anak itu semakin lama semakin pintar.","answers":["这个孩子越来越聪明了"]},{"id_text":"Sekolah ini semakin lama semakin ramai setiap tahun.","answers":["这个学校每年越来越热闹"]},{"id_text":"Kotanya semakin lama semakin macet di pagi hari.","answers":["这个城市早上越来越堵车"]},{"id_text":"Bahasa Mandarinnya semakin lama semakin lancar setelah belajar di sini.","answers":["他在这儿学习以后,汉语越来越流利了","她在这儿学习以后,汉语越来越流利了"]},{"id_text":"Harga rumah di kota itu semakin lama semakin mahal.","answers":["那个城市的房价越来越贵了"]},{"id_text":"Pekerjaannya di kantor semakin lama semakin banyak.","answers":["他在办公室的工作越来越多了","她在办公室的工作越来越多了"]}]},{"title":"Latihan 6","note":"除了...以外,还","items":[{"id_text":"Selain bahasa Inggris, dia juga bisa bahasa Mandarin.","answers":["除了英语以外,他还会说汉语","除了英语以外,她还会说汉语","除了英语以外,他还会说中文","除了英语以外,她还会说中文"]},{"id_text":"Selain buku ini, aku juga membeli itu.","answers":["除了这本书以外,我还买了那本"]},{"id_text":"Selain nasi, kami juga makan sayur.","answers":["除了米饭以外,我们还吃蔬菜"]},{"id_text":"Selain akhir pekan, dia juga bekerja pada hari libur.","answers":["除了周末以外,他还在假期工作","除了周末以外,她还在假期工作"]},{"id_text":"Selain kopi, aku juga suka teh.","answers":["除了咖啡以外,我还喜欢茶"]},{"id_text":"Selain apel, aku juga suka pisang.","answers":["除了苹果以外,我还喜欢香蕉"]},{"id_text":"Selain belajar, dia juga suka olahraga.","answers":["除了学习以外,他还喜欢运动","除了学习以外,她还喜欢运动"]},{"id_text":"Selain Beijing, kami juga ingin pergi ke Shanghai.","answers":["除了北京以外,我们还想去上海"]},{"id_text":"Selain buku ini, aku juga membaca yang itu.","answers":["除了这本书以外,我还看了那本"]},{"id_text":"Selain menyanyi, dia juga bisa menari.","answers":["除了唱歌以外,他还会跳舞","除了唱歌以外,她还会跳舞"]},{"id_text":"Selain kopi, kami juga menyediakan teh.","answers":["除了咖啡以外,我们还提供茶"]},{"id_text":"Selain dia, murid lain juga datang.","answers":["除了他以外,别的学生也来了","除了她以外,别的学生也来了"]},{"id_text":"Selain uang, waktu juga penting.","answers":["除了钱以外,时间也很重要"]},{"id_text":"Selain aku, temanku juga suka film ini.","answers":["除了我以外,我朋友也喜欢这个电影"]},{"id_text":"Selain hari ini, besok juga bisa.","answers":["除了今天以外,明天也可以"]},{"id_text":"Selain belajar di sekolah, dia juga belajar di rumah.","answers":["除了在学校学习以外,他还在家学习","除了在学校学习以外,她还在家学习"]},{"id_text":"Selain bekerja di kantor, aku juga bekerja di rumah pada akhir pekan.","answers":["除了在办公室工作以外,我周末还在家工作"]},{"id_text":"Selain makan di rumah, kami juga sering makan di restoran itu.","answers":["除了在家吃饭以外,我们还常在那家饭馆吃饭"]},{"id_text":"Selain pergi ke Beijing, mereka juga pergi ke Shanghai tahun ini.","answers":["除了去北京以外,他们今年还去了上海"]},{"id_text":"Selain membaca di perpustakaan, dia juga membaca di taman.","answers":["除了在图书馆看书以外,他还在公园看书","除了在图书馆看书以外,她还在公园看书"]}]},{"title":"Latihan 7","note":"或者 vs 还是","items":[{"id_text":"Kita bisa naik bis, atau bisa jalan kaki.","answers":["我们可以坐公共汽车,或者可以走路","我们可以坐公共汽车,或者走路"]},{"id_text":"Kamu mau kopi atau teh?","answers":["你要咖啡还是茶"]},{"id_text":"Nanti malam kita nonton film, atau makan malam di luar.","answers":["今晚我们看电影,或者在外面吃饭"]},{"id_text":"Kamu pergi hari ini atau besok?","answers":["你今天去还是明天去"]},{"id_text":"Dia bisa naik kereta atau pesawat.","answers":["他可以坐火车,或者坐飞机","她可以坐火车,或者坐飞机"]},{"id_text":"Kamu ingin ke taman atau ke perpustakaan?","answers":["你想去公园还是去图书馆"]},{"id_text":"Kita bisa makan di rumah, atau makan di luar.","answers":["我们可以在家吃饭,或者在外面吃饭"]},{"id_text":"Dia belajar bahasa Mandarin atau bahasa Jepang?","answers":["他学汉语还是学日语","她学汉语还是学日语"]},{"id_text":"Kamu bisa menelepon aku, atau mengirim pesan.","answers":["你可以给我打电话,或者发短信"]},{"id_text":"Kamu suka musim panas atau musim dingin?","answers":["你喜欢夏天还是冬天"]},{"id_text":"Kita bisa naik taksi, atau naik kereta.","answers":["我们可以坐出租车,或者坐火车"]},{"id_text":"Kamu mau air putih atau jus?","answers":["你要白水还是果汁"]},{"id_text":"Dia bisa datang pagi, atau datang sore.","answers":["他可以早上来,或者下午来","她可以早上来,或者下午来"]},{"id_text":"Kamu ingin nasi atau mi?","answers":["你要米饭还是面条"]},{"id_text":"Kita bisa menonton di rumah, atau di bioskop.","answers":["我们可以在家看,或者在电影院看"]},{"id_text":"Kita bisa belajar di rumah, atau bisa belajar di perpustakaan.","answers":["我们可以在家学习,或者可以在图书馆学习"]},{"id_text":"Kamu mau makan di rumah atau di restoran malam ini?","answers":["你今晚要在家吃还是在饭馆吃"]},{"id_text":"Dia bisa bekerja di kantor pagi ini, atau bekerja di rumah.","answers":["他今天早上可以在办公室工作,或者在家工作","她今天早上可以在办公室工作,或者在家工作"]},{"id_text":"Kamu ingin pergi ke sekolah pagi ini atau siang ini?","answers":["你想今天早上去学校还是中午去"]},{"id_text":"Kami bisa menunggu di stasiun, atau menunggu di depan toko.","answers":["我们可以在车站等,或者在商店门口等"]}]},{"title":"Latihan 8","note":"好像","items":[{"id_text":"Dia sepertinya tidak senang.","answers":["他好像不高兴","她好像不高兴"]},{"id_text":"Sepertinya akan hujan.","answers":["好像要下雨了"]},{"id_text":"Dia sepertinya sudah pergi.","answers":["他好像已经走了","她好像已经走了"]},{"id_text":"Rasanya aku pernah melihat dia.","answers":["我好像见过他","我好像见过她"]},{"id_text":"Sepertinya dia lupa.","answers":["他好像忘了","她好像忘了"]},{"id_text":"Dia sepertinya sudah tahu.","answers":["他好像已经知道了","她好像已经知道了"]},{"id_text":"Sepertinya ini bukan jalan yang benar.","answers":["好像这不是对的路"]},{"id_text":"Dia sepertinya sedang sibuk.","answers":["他好像在忙","她好像在忙"]},{"id_text":"Sepertinya dia salah paham.","answers":["他好像误会了","她好像误会了"]},{"id_text":"Rasanya aku pernah ke tempat ini.","answers":["我好像来过这个地方"]},{"id_text":"Sepertinya makanan ini sudah dingin.","answers":["这个菜好像凉了"]},{"id_text":"Dia sepertinya tidak mendengarku.","answers":["他好像没听见我","她好像没听见我"]},{"id_text":"Sepertinya akan ada hujan salju.","answers":["好像要下雪了"]},{"id_text":"Dia sepertinya baru bangun.","answers":["他好像刚起床","她好像刚起床"]},{"id_text":"Sepertinya harganya naik.","answers":["价格好像涨了"]},{"id_text":"Sepertinya dia sedang bekerja di kantor sekarang.","answers":["他好像现在在办公室工作","她好像现在在办公室工作"]},{"id_text":"Sepertinya hujan akan turun di sini sebentar lagi.","answers":["这儿好像马上要下雨了"]},{"id_text":"Rasanya aku pernah melihat dia di sekolah itu.","answers":["我好像在那个学校见过他","我好像在那个学校见过她"]},{"id_text":"Sepertinya dia sudah pergi dari kantor tadi sore.","answers":["他今天下午好像已经从办公室走了","她今天下午好像已经从办公室走了"]},{"id_text":"Sepertinya mereka sedang menunggu di depan pintu.","answers":["他们好像在门口等着"]}]},{"title":"Latihan 9","note":"顺便","items":[{"id_text":"Kalau kamu pergi ke toko, tolong sekalian belikan aku roti.","answers":["你去商店的时候,顺便帮我买面包"]},{"id_text":"Kalau aku pergi ke kantor pos, aku akan sekalian mengirim surat ini.","answers":["我去邮局的时候,顺便寄这封信"]},{"id_text":"Kalau kamu ke perpustakaan, tolong sekalian kembalikan buku ini.","answers":["你去图书馆的时候,顺便还这本书"]},{"id_text":"Kalau kita keluar, kita sekalian beli sayur.","answers":["我们出去的时候,顺便买菜"]},{"id_text":"Kalau kamu ke dapur, tolong sekalian bawakan segelas air.","answers":["你去厨房的时候,顺便带杯水来"]},{"id_text":"Kalau kamu pergi ke bank, tolong sekalian ambilkan uangku.","answers":["你去银行的时候,顺便帮我取钱"]},{"id_text":"Kalau aku pulang, aku akan sekalian membeli sayur.","answers":["我回家的时候,顺便买菜"]},{"id_text":"Kalau kamu ke pasar, tolong sekalian belikan buah.","answers":["你去市场的时候,顺便买水果"]},{"id_text":"Kalau kita ke kota, kita sekalian menonton film.","answers":["我们去城里的时候,顺便看电影"]},{"id_text":"Kalau kamu ke kantor, tolong sekalian kirim surat ini.","answers":["你去办公室的时候,顺便寄这封信"]},{"id_text":"Kalau aku ke sekolah, aku akan sekalian menjemput temanku.","answers":["我去学校的时候,顺便接我朋友"]},{"id_text":"Kalau kamu ke supermarket, tolong sekalian beli telur.","answers":["你去超市的时候,顺便买鸡蛋"]},{"id_text":"Kalau kita keluar, kita sekalian jalan-jalan.","answers":["我们出去的时候,顺便散散步"]},{"id_text":"Kalau kamu ke rumah sakit, tolong sekalian tanyakan jadwal dokter.","answers":["你去医院的时候,顺便问问医生的时间"]},{"id_text":"Kalau aku ke toko buku, aku akan sekalian mencari kamus.","answers":["我去书店的时候,顺便找词典"]},{"id_text":"Kalau kamu pergi ke sekolah pagi ini, tolong sekalian antar buku ini ke gurumu.","answers":["你今天早上去学校的时候,顺便把这本书带给你的老师"]},{"id_text":"Kalau aku pergi ke kantor besok, aku akan sekalian mampir ke bank.","answers":["我明天去办公室的时候,顺便去银行"]},{"id_text":"Kalau dia pulang dari kerja malam ini, dia akan sekalian membeli roti di toko itu.","answers":["他今晚下班回家的时候,顺便在那家商店买面包","她今晚下班回家的时候,顺便在那家商店买面包"]},{"id_text":"Kalau kami pergi ke perpustakaan sore ini, kami akan sekalian mengembalikan buku ini.","answers":["我们今天下午去图书馆的时候,顺便还这本书"]},{"id_text":"Kalau kamu keluar dari rumah pagi ini, tolong sekalian kunci pintu.","answers":["你今天早上出门的时候,顺便锁门"]}]},{"title":"Latihan 10","note":"pelengkap potensial 得/不","items":[{"id_text":"Aku tidak paham apa yang dia katakan.","answers":["我听不懂他说的话","我听不懂她说的话"]},{"id_text":"Aku bisa mengerti bahasa Mandarin yang dia ucapkan.","answers":["我听得懂他说的汉语","我听得懂她说的汉语"]},{"id_text":"Dia tidak bisa membaca huruf ini.","answers":["他看不懂这个字","她看不懂这个字"]},{"id_text":"Aku bisa menemukan jalan itu.","answers":["我找得到那条路"]},{"id_text":"Kami tidak bisa menyelesaikan pekerjaan ini hari ini.","answers":["我们今天做不完这个工作"]},{"id_text":"Aku tidak bisa melihat papan tulis itu dari sini.","answers":["我在这儿看不见那个黑板","我在这里看不见那个黑板"]},{"id_text":"Dia bisa mendengar suara itu.","answers":["他听得见那个声音","她听得见那个声音"]},{"id_text":"Kami tidak bisa menemukan jalan keluar.","answers":["我们找不到出口"]},{"id_text":"Aku bisa membaca tulisan ini.","answers":["我看得懂这个字"]},{"id_text":"Dia tidak bisa menyelesaikan pekerjaan itu hari ini.","answers":["他今天做不完那个工作","她今天做不完那个工作"]},{"id_text":"Aku bisa mengingat nama itu.","answers":["我记得住那个名字"]},{"id_text":"Kami tidak bisa mendengar apa yang dia katakan.","answers":["我们听不到他说的话","我们听不到她说的话"]},{"id_text":"Dia bisa membeli barang itu.","answers":["他买得到那个东西","她买得到那个东西"]},{"id_text":"Aku tidak bisa membuka pintu ini.","answers":["我打不开这扇门"]},{"id_text":"Kami bisa menemukan tempat itu.","answers":["我们找得到那个地方"]},{"id_text":"Aku bisa mendengar suara musik dari kamar sebelah.","answers":["我听得到隔壁房间的音乐声"]},{"id_text":"Dia tidak bisa membaca tulisan itu di papan dari sini.","answers":["他在这儿看不懂那块黑板上的字","她在这儿看不懂那块黑板上的字"]},{"id_text":"Kami tidak bisa menemukan jalan itu di kota ini.","answers":["我们在这个城市找不到那条路"]},{"id_text":"Aku bisa menyelesaikan pekerjaan ini di kantor hari ini.","answers":["我今天在办公室做得完这个工作"]},{"id_text":"Dia tidak bisa mengerti perkataan gurunya di kelas tadi.","answers":["他今天在班里听不懂老师说的话","她今天在班里听不懂老师说的话"]}]}],"4":[{"title":"Latihan 1","note":"尽管...还是","items":[{"id_text":"Meskipun dia sudah berusaha keras, dia tetap gagal dalam ujian.","answers":["尽管他很努力,还是没有通过考试","尽管她很努力,还是没有通过考试"]},{"id_text":"Meskipun cuaca dingin, dia tetap pergi berolahraga.","answers":["尽管天气很冷,他还是去运动了","尽管天气很冷,她还是去运动了"]},{"id_text":"Meskipun sudah diperingatkan, dia tetap melakukan kesalahan itu.","answers":["尽管被提醒了,他还是犯了那个错误","尽管被提醒了,她还是犯了那个错误"]},{"id_text":"Meskipun jaraknya jauh, mereka tetap berjalan kaki ke sana.","answers":["尽管很远,他们还是走路去了那儿","尽管很远,他们还是走路去了那里"]},{"id_text":"Meskipun sangat lelah, dia tetap menyelesaikan pekerjaan itu.","answers":["尽管很累,他还是做完了那个工作","尽管很累,她还是做完了那个工作"]},{"id_text":"Meskipun harganya mahal, dia tetap membelinya.","answers":["尽管很贵,他还是买了","尽管很贵,她还是买了"]},{"id_text":"Meskipun sudah malam, mereka tetap bekerja.","answers":["尽管已经很晚了,他们还是在工作"]},{"id_text":"Meskipun sulit dipahami, aku tetap membaca buku itu.","answers":["尽管很难懂,我还是看了那本书"]},{"id_text":"Meskipun banyak masalah, perusahaan itu tetap berjalan.","answers":["尽管有很多问题,那家公司还是在运作"]},{"id_text":"Meskipun dia sakit, dia tetap datang bekerja.","answers":["尽管他生病了,还是来上班了","尽管她生病了,还是来上班了"]},{"id_text":"Meskipun jalannya rusak, kami tetap sampai.","answers":["尽管路很坏,我们还是到了"]},{"id_text":"Meskipun waktu sedikit, mereka berhasil menyelesaikannya.","answers":["尽管时间不多,他们还是做完了"]},{"id_text":"Meskipun sudah diperingati, dia tetap tidak mendengarkan.","answers":["尽管被警告了,他还是不听","尽管被警告了,她还是不听"]},{"id_text":"Meskipun gagal berkali-kali, dia tidak menyerah.","answers":["尽管失败了很多次,他还是没有放弃","尽管失败了很多次,她还是没有放弃"]},{"id_text":"Meskipun tidak setuju, aku tetap membantu.","answers":["尽管我不同意,我还是帮忙了"]},{"id_text":"Meskipun dia bekerja di kantor sampai malam, dia tetap datang ke pestaku.","answers":["尽管他在办公室工作到很晚,还是来了我的聚会","尽管她在办公室工作到很晚,还是来了我的聚会"]},{"id_text":"Meskipun hujan deras di luar, kami tetap belajar di perpustakaan sampai malam.","answers":["尽管外面下大雨,我们还是在图书馆学习到很晚"]},{"id_text":"Meskipun sekolah itu jauh dari rumahnya, dia tetap pergi ke sana setiap hari.","answers":["尽管那个学校离他家很远,他还是每天去那儿","尽管那个学校离她家很远,她还是每天去那儿"]},{"id_text":"Meskipun harganya mahal di toko itu, aku tetap membelinya kemarin sore.","answers":["尽管那家商店的东西很贵,我昨天下午还是买了"]},{"id_text":"Meskipun lelah setelah bekerja seharian, dia tetap memasak untuk keluarganya malam ini.","answers":["尽管工作了一整天很累,他今晚还是为家人做饭了","尽管工作了一整天很累,她今晚还是为家人做饭了"]}]},{"title":"Latihan 2","note":"不但...而且","items":[{"id_text":"Dia bukan hanya pintar, tapi juga rajin.","answers":["他不但聪明,而且很努力","她不但聪明,而且很努力"]},{"id_text":"Restoran ini bukan hanya murah, tapi juga enak.","answers":["这家饭馆不但便宜,而且好吃"]},{"id_text":"Dia bukan hanya bisa bahasa Mandarin, tapi juga bahasa Inggris.","answers":["他不但会说汉语,而且会说英语","她不但会说汉语,而且会说英语"]},{"id_text":"Kota ini bukan hanya indah, tapi juga aman.","answers":["这个城市不但漂亮,而且安全"]},{"id_text":"Dia bukan hanya membantu aku, tapi juga membantu teman-temanku.","answers":["他不但帮助了我,而且帮助了我的朋友们","她不但帮助了我,而且帮助了我的朋友们"]},{"id_text":"Dia bukan hanya cantik, tapi juga baik hati.","answers":["她不但漂亮,而且很善良"]},{"id_text":"Kota ini bukan hanya besar, tapi juga modern.","answers":["这个城市不但大,而且很现代"]},{"id_text":"Dia bukan hanya rajin, tapi juga jujur.","answers":["他不但努力,而且很诚实","她不但努力,而且很诚实"]},{"id_text":"Rencana ini bukan hanya bagus, tapi juga murah.","answers":["这个计划不但好,而且便宜"]},{"id_text":"Dia bukan hanya pandai memasak, tapi juga pandai bernyanyi.","answers":["他不但会做饭,而且会唱歌","她不但会做饭,而且会唱歌"]},{"id_text":"Perusahaan ini bukan hanya terkenal, tapi juga dipercaya.","answers":["这家公司不但有名,而且受信任"]},{"id_text":"Dia bukan hanya membantu kami, tapi juga mengajari kami.","answers":["他不但帮助了我们,而且教了我们","她不但帮助了我们,而且教了我们"]},{"id_text":"Kamar ini bukan hanya bersih, tapi juga nyaman.","answers":["这个房间不但干净,而且舒服"]},{"id_text":"Dia bukan hanya cerdas, tapi juga rendah hati.","answers":["他不但聪明,而且很谦虚","她不但聪明,而且很谦虚"]},{"id_text":"Buku ini bukan hanya menarik, tapi juga bermanfaat.","answers":["这本书不但有意思,而且有用"]},{"id_text":"Sekolah ini bukan hanya besar, tapi juga memiliki perpustakaan yang bagus.","answers":["这个学校不但大,而且有很好的图书馆"]},{"id_text":"Dia bukan hanya bekerja keras di kantor, tapi juga membantu di rumah.","answers":["他不但在办公室努力工作,而且在家帮忙","她不但在办公室努力工作,而且在家帮忙"]},{"id_text":"Restoran ini bukan hanya enak, tapi juga bersih.","answers":["这家饭馆不但好吃,而且干净"]},{"id_text":"Kota ini bukan hanya indah di siang hari, tapi juga indah di malam hari.","answers":["这个城市不但白天漂亮,而且晚上也漂亮"]},{"id_text":"Dia bukan hanya belajar di sekolah, tapi juga belajar sendiri di rumah setiap malam.","answers":["他不但在学校学习,而且每天晚上还在家自己学习","她不但在学校学习,而且每天晚上还在家自己学习"]}]},{"title":"Latihan 3","note":"只有...才","items":[{"id_text":"Hanya dengan berlatih setiap hari, kamu baru bisa menguasai bahasa Mandarin.","answers":["只有每天练习,你才能掌握汉语","只有每天练习,你才能掌握中文"]},{"id_text":"Hanya kalau kamu bekerja keras, kamu baru bisa berhasil.","answers":["只有努力工作,你才能成功"]},{"id_text":"Hanya dengan tiket ini, kamu baru bisa masuk.","answers":["只有这张票,你才能进去"]},{"id_text":"Hanya kalau kamu meminta maaf, dia baru akan memaafkanmu.","answers":["只有你道歉,他才会原谅你","只有你道歉,她才会原谅你"]},{"id_text":"Hanya dengan istirahat cukup, tubuh baru bisa sehat.","answers":["只有休息够,身体才会健康"]},{"id_text":"Hanya kalau kamu bertanya, kamu baru bisa mengerti.","answers":["只有你问,你才能明白"]},{"id_text":"Hanya dengan izin khusus, kamu baru bisa masuk ke sana.","answers":["只有特别许可,你才能进去那儿","只有特别许可,你才能进去那里"]},{"id_text":"Hanya kalau kita bekerja sama, kita baru bisa berhasil.","answers":["只有我们合作,才能成功"]},{"id_text":"Hanya dengan mencoba, kamu baru tahu hasilnya.","answers":["只有试试,你才知道结果"]},{"id_text":"Hanya kalau kamu sabar, kamu baru bisa belajar dengan baik.","answers":["只有耐心,你才能学好"]},{"id_text":"Hanya dengan uang yang cukup, kita baru bisa membeli rumah itu.","answers":["只有钱够,我们才能买那个房子"]},{"id_text":"Hanya kalau dia menjelaskan, aku baru bisa mengerti.","answers":["只有他解释,我才能明白","只有她解释,我才能明白"]},{"id_text":"Hanya dengan latihan yang cukup, kamu baru bisa menguasai keterampilan itu.","answers":["只有练习够,你才能掌握那个技能"]},{"id_text":"Hanya kalau semua setuju, rencana ini baru bisa dimulai.","answers":["只有大家都同意,这个计划才能开始"]},{"id_text":"Hanya dengan waktu yang cukup, kita baru bisa menyelesaikannya dengan baik.","answers":["只有时间够,我们才能做好"]},{"id_text":"Hanya dengan bekerja keras di kantor, kamu baru bisa dipromosikan.","answers":["只有在办公室努力工作,你才能被提升"]},{"id_text":"Hanya kalau kamu belajar di perpustakaan setiap malam, kamu baru bisa lulus ujian ini.","answers":["只有每天晚上在图书馆学习,你才能通过这个考试"]},{"id_text":"Hanya dengan tiket khusus ini, kamu baru bisa masuk ke ruangan itu.","answers":["只有这张特别的票,你才能进那个房间"]},{"id_text":"Hanya kalau kamu datang ke kantor lebih awal, kamu baru bisa bertemu bosmu.","answers":["只有早点儿来办公室,你才能见到你的老板"]},{"id_text":"Hanya dengan berlatih di rumah setiap hari, kemampuanmu baru akan meningkat.","answers":["只有每天在家练习,你的水平才会提高"]}]},{"title":"Latihan 4","note":"无论...都","items":[{"id_text":"Tidak peduli seberapa sulit, dia selalu tetap tersenyum.","answers":["无论多难,他都一直微笑","无论多难,她都一直微笑"]},{"id_text":"Tidak peduli siapa yang datang, aku akan menyambutnya.","answers":["无论谁来,我都会欢迎"]},{"id_text":"Tidak peduli cuaca bagaimana, kami akan tetap pergi.","answers":["无论天气怎么样,我们都会去"]},{"id_text":"Tidak peduli berapa harganya, dia tetap akan membelinya.","answers":["无论多贵,他都会买","无论多贵,她都会买"]},{"id_text":"Tidak peduli di mana kamu berada, aku akan mencarimu.","answers":["无论你在哪儿,我都会找你","无论你在哪里,我都会找你"]},{"id_text":"Tidak peduli apa yang terjadi, aku akan tetap di sini.","answers":["无论发生什么,我都会留在这儿","无论发生什么,我都会留在这里"]},{"id_text":"Tidak peduli seberapa jauh, dia akan tetap datang.","answers":["无论多远,他都会来","无论多远,她都会来"]},{"id_text":"Tidak peduli kapan kamu datang, aku akan menunggu.","answers":["无论你什么时候来,我都会等"]},{"id_text":"Tidak peduli berapa lama, kami akan terus mencoba.","answers":["无论多久,我们都会继续试"]},{"id_text":"Tidak peduli hasilnya bagaimana, kita harus mencoba.","answers":["无论结果怎么样,我们都得试试"]},{"id_text":"Tidak peduli siapa yang bertanya, dia akan menjawab dengan jujur.","answers":["无论谁问,他都会诚实回答","无论谁问,她都会诚实回答"]},{"id_text":"Tidak peduli apa pendapat orang lain, aku akan melakukan ini.","answers":["无论别人怎么想,我都会做这个"]},{"id_text":"Tidak peduli seberapa lelah, kami akan menyelesaikan pekerjaan ini.","answers":["无论多累,我们都会做完这个工作"]},{"id_text":"Tidak peduli musim apa, dia selalu berolahraga.","answers":["无论什么季节,他都会运动","无论什么季节,她都会运动"]},{"id_text":"Tidak peduli di negara mana, budaya itu penting.","answers":["无论在哪个国家,文化都很重要"]},{"id_text":"Tidak peduli seberapa jauh sekolahnya, dia selalu pergi ke sana tepat waktu.","answers":["无论学校多远,他都准时去","无论学校多远,她都准时去"]},{"id_text":"Tidak peduli cuaca di luar bagaimana, kami akan tetap bekerja di kantor.","answers":["无论外面天气怎么样,我们都会在办公室工作"]},{"id_text":"Tidak peduli jam berapa kamu pulang, aku akan menunggumu di rumah.","answers":["无论你几点回家,我都会在家等你"]},{"id_text":"Tidak peduli seberapa sibuk kantornya, dia selalu makan malam bersama keluarga.","answers":["无论办公室多忙,他都会跟家人一起吃晚饭","无论办公室多忙,她都会跟家人一起吃晚饭"]},{"id_text":"Tidak peduli di kota mana kamu tinggal, aku akan mengunjungimu.","answers":["无论你住在哪个城市,我都会去看你"]}]},{"title":"Latihan 5","note":"一旦...就","items":[{"id_text":"Begitu dia sampai, kami langsung mulai rapat.","answers":["一旦他到了,我们就开始开会","一旦她到了,我们就开始开会"]},{"id_text":"Begitu hujan turun, jalanan langsung macet.","answers":["一旦下雨,路上就堵车"]},{"id_text":"Begitu kamu memutuskan, jangan menyerah.","answers":["一旦你决定了,就不要放弃"]},{"id_text":"Begitu dia pergi, aku langsung merasa kesepian.","answers":["一旦他走了,我就觉得孤单","一旦她走了,我就觉得孤单"]},{"id_text":"Begitu masalah itu muncul, kita harus segera menyelesaikannya.","answers":["一旦问题出现,我们就得马上解决"]},{"id_text":"Begitu dia menyetujui, kita bisa mulai bekerja.","answers":["一旦他同意,我们就能开始工作","一旦她同意,我们就能开始工作"]},{"id_text":"Begitu masalah selesai, kita bisa lanjut.","answers":["一旦问题解决了,我们就能继续"]},{"id_text":"Begitu dia belajar bahasa itu, dia langsung menyukainya.","answers":["一旦他学了那种语言,就喜欢上了","一旦她学了那种语言,就喜欢上了"]},{"id_text":"Begitu hujan berhenti, kami langsung berangkat.","answers":["一旦雨停了,我们就出发"]},{"id_text":"Begitu kamu mencoba, kamu akan mengerti.","answers":["一旦你试了,就会明白"]},{"id_text":"Begitu berita itu tersebar, semua orang jadi tahu.","answers":["一旦消息传开,大家就都知道了"]},{"id_text":"Begitu kesempatan datang, dia langsung mengambilnya.","answers":["一旦机会来了,他就抓住了","一旦机会来了,她就抓住了"]},{"id_text":"Begitu aku selesai, aku akan meneleponmu.","answers":["一旦我做完,就给你打电话"]},{"id_text":"Begitu dia mulai bicara, dia tidak berhenti.","answers":["一旦他开始说,就不停","一旦她开始说,就不停"]},{"id_text":"Begitu keputusan dibuat, kita harus mengikutinya.","answers":["一旦决定做了,我们就得遵守"]},{"id_text":"Begitu dia tiba di kantor pagi ini, dia langsung mulai bekerja.","answers":["他今天早上一到办公室,就开始工作了","她今天早上一到办公室,就开始工作了"]},{"id_text":"Begitu hujan turun di kota itu, jalanan langsung banjir.","answers":["一旦那个城市下雨,路上就会淹水"]},{"id_text":"Begitu kamu memutuskan untuk pindah ke sana, beri tahu aku segera.","answers":["一旦你决定搬到那儿,就马上告诉我"]},{"id_text":"Begitu dia pulang dari sekolah, dia langsung mengerjakan tugasnya di rumah.","answers":["他一从学校回家,就开始做作业","她一从学校回家,就开始做作业"]},{"id_text":"Begitu masalah itu muncul di kantor, kami harus segera menyelesaikannya di sana.","answers":["一旦问题在办公室出现,我们就得马上在那儿解决"]}]},{"title":"Latihan 6","note":"既然...就","items":[{"id_text":"Karena kamu sudah memutuskan, aku tidak akan menghalangimu lagi.","answers":["既然你已经决定了,我就不再阻止你了","既然你已经决定了,我就不再阻止你"]},{"id_text":"Karena sudah begini, kita terima saja.","answers":["既然已经这样了,我们就接受吧"]},{"id_text":"Karena kamu tahu itu salah, jangan lakukan lagi.","answers":["既然你知道那是错的,就别再做了"]},{"id_text":"Karena kamu tidak suka, kita jangan pergi ke sana.","answers":["既然你不喜欢,我们就不去那儿了","既然你不喜欢,我们就不去那里了"]},{"id_text":"Karena semuanya sudah siap, kita mulai saja.","answers":["既然都准备好了,我们就开始吧"]},{"id_text":"Karena kamu di sini, ayo kita mulai.","answers":["既然你在这儿,我们就开始吧","既然你在这里,我们就开始吧"]},{"id_text":"Karena semua sudah setuju, kita jalankan rencana ini.","answers":["既然大家都同意了,我们就做这个计划吧"]},{"id_text":"Karena harganya mahal, kita jangan beli.","answers":["既然很贵,我们就不买了"]},{"id_text":"Karena kamu sudah berjanji, kamu harus menepatinya.","answers":["既然你答应了,你就得做到"]},{"id_text":"Karena hujan, kita tinggal di rumah saja.","answers":["既然下雨了,我们就呆在家里吧"]},{"id_text":"Karena dia tidak datang, kita mulai tanpanya.","answers":["既然他没来,我们就开始吧","既然她没来,我们就开始吧"]},{"id_text":"Karena kamu tahu jawabannya, katakan padaku.","answers":["既然你知道答案,就告诉我吧"]},{"id_text":"Karena keputusan sudah dibuat, jangan ragu lagi.","answers":["既然决定了,就别再犹豫了"]},{"id_text":"Karena sudah larut, kita pulang saja.","answers":["既然已经很晚了,我们就回家吧"]},{"id_text":"Karena kamu ingin belajar, aku akan membantumu.","answers":["既然你想学,我就帮你吧"]},{"id_text":"Karena kamu sudah bekerja di kantor itu, kamu harus mengikuti aturannya.","answers":["既然你已经在那家公司工作了,就得遵守规定"]},{"id_text":"Karena kamu sudah tinggal di kota ini, kamu harus belajar bahasanya.","answers":["既然你已经住在这个城市了,就得学这里的语言"]},{"id_text":"Karena sekolah sudah dimulai, kita jangan terlambat lagi.","answers":["既然学校已经开学了,我们就别再迟到了"]},{"id_text":"Karena kamu sudah memutuskan untuk pindah rumah, mari kita mulai berkemas.","answers":["既然你已经决定搬家了,我们就开始收拾吧"]},{"id_text":"Karena rapat sudah dijadwalkan di kantor besok, kita harus siap.","answers":["既然会议已经安排在明天的办公室了,我们就得准备好"]}]},{"title":"Latihan 7","note":"由于","items":[{"id_text":"Karena macet, dia terlambat datang ke kantor.","answers":["由于堵车,他上班迟到了","由于堵车,她上班迟到了"]},{"id_text":"Karena hujan deras, pertandingan itu dibatalkan.","answers":["由于下大雨,比赛被取消了"]},{"id_text":"Karena kurang tidur, dia merasa sangat lelah.","answers":["由于睡眠不够,他觉得很累","由于睡眠不够,她觉得很累"]},{"id_text":"Karena harga naik, banyak orang tidak membeli itu.","answers":["由于价格上涨,很多人不买那个"]},{"id_text":"Karena kesalahan itu, perusahaan mengalami kerugian.","answers":["由于那个错误,公司受到了损失"]},{"id_text":"Karena pandemi, banyak orang bekerja dari rumah.","answers":["由于疫情,很多人在家工作"]},{"id_text":"Karena kesalahan teknis, penerbangan itu ditunda.","answers":["由于技术问题,那个航班延误了"]},{"id_text":"Karena kekurangan dana, proyek itu dihentikan.","answers":["由于资金不够,那个项目停止了"]},{"id_text":"Karena permintaan tinggi, harga barang itu naik.","answers":["由于需求很高,那个东西的价格上涨了"]},{"id_text":"Karena cuaca buruk, penerbangan dibatalkan.","answers":["由于天气不好,航班被取消了"]},{"id_text":"Karena kurangnya pengalaman, dia membuat kesalahan itu.","answers":["由于经验不够,他犯了那个错误","由于经验不够,她犯了那个错误"]},{"id_text":"Karena persaingan ketat, perusahaan itu menurunkan harga.","answers":["由于竞争激烈,那家公司降低了价格"]},{"id_text":"Karena masalah kesehatan, dia berhenti bekerja.","answers":["由于健康问题,他辞职了","由于健康问题,她辞职了"]},{"id_text":"Karena jarak yang jauh, kami tidak sering bertemu.","answers":["由于距离很远,我们不常见面"]},{"id_text":"Karena kurang informasi, keputusan itu ditunda.","answers":["由于信息不够,那个决定被推迟了"]},{"id_text":"Karena kemacetan di jalan itu, dia terlambat sampai di kantor.","answers":["由于那条路堵车,他晚到办公室了","由于那条路堵车,她晚到办公室了"]},{"id_text":"Karena hujan deras di kota itu, sekolah diliburkan hari ini.","answers":["由于那个城市下大雨,今天学校放假了"]},{"id_text":"Karena kurangnya staf di kantor, mereka harus bekerja lembur.","answers":["由于办公室人手不够,他们得加班"]},{"id_text":"Karena masalah listrik di gedung itu, semua orang harus keluar.","answers":["由于那栋楼电力有问题,大家都得出去"]},{"id_text":"Karena harga sewa di kota itu naik, banyak orang pindah ke luar kota.","answers":["由于那个城市的房租上涨,很多人搬到郊区了"]}]},{"title":"Latihan 8","note":"与其...不如","items":[{"id_text":"Daripada menunggu di sini, lebih baik kita cari cara lain.","answers":["与其在这儿等,不如我们想别的办法","与其在这里等,不如我们想别的办法"]},{"id_text":"Daripada mengeluh, lebih baik kamu bertindak.","answers":["与其抱怨,不如你去做"]},{"id_text":"Daripada membeli yang mahal, lebih baik kamu menyewa.","answers":["与其买贵的,不如你租一个"]},{"id_text":"Daripada pergi sendiri, lebih baik kita pergi bersama.","answers":["与其一个人去,不如我们一起去"]},{"id_text":"Daripada takut gagal, lebih baik kamu mencoba.","answers":["与其害怕失败,不如你去试试"]},{"id_text":"Daripada berbohong, lebih baik kamu jujur.","answers":["与其撒谎,不如你说实话"]},{"id_text":"Daripada bekerja sendiri, lebih baik kita bekerja sama.","answers":["与其一个人工作,不如我们合作"]},{"id_text":"Daripada mengeluh terus, lebih baik kamu mencari solusi.","answers":["与其一直抱怨,不如你找解决办法"]},{"id_text":"Daripada menunda, lebih baik kamu mulai sekarang.","answers":["与其拖延,不如你现在开始"]},{"id_text":"Daripada membeli baru, lebih baik kamu memperbaikinya.","answers":["与其买新的,不如你修一下"]},{"id_text":"Daripada diam saja, lebih baik kamu bertanya.","answers":["与其不说话,不如你问一下"]},{"id_text":"Daripada takut mencoba, lebih baik kamu belajar dari kesalahan.","answers":["与其害怕尝试,不如你从错误中学习"]},{"id_text":"Daripada menyalahkan orang lain, lebih baik kamu introspeksi diri.","answers":["与其责怪别人,不如你反省自己"]},{"id_text":"Daripada terburu-buru, lebih baik kamu merencanakan dengan baik.","answers":["与其着急,不如你好好计划"]},{"id_text":"Daripada mengeluh tentang cuaca, lebih baik kamu membawa payung.","answers":["与其抱怨天气,不如你带雨伞"]},{"id_text":"Daripada bekerja lembur di kantor, lebih baik kamu pulang dan istirahat.","answers":["与其在办公室加班,不如你回家休息"]},{"id_text":"Daripada belajar sendirian di rumah, lebih baik kamu belajar bersama teman di perpustakaan.","answers":["与其一个人在家学习,不如你和朋友在图书馆一起学"]},{"id_text":"Daripada makan di luar setiap hari, lebih baik kita masak sendiri di rumah.","answers":["与其每天在外面吃,不如我们自己在家做饭"]},{"id_text":"Daripada menunggu bis di sini, lebih baik kita berjalan kaki ke sekolah.","answers":["与其在这儿等公共汽车,不如我们走路去学校"]},{"id_text":"Daripada pindah ke kota lain, lebih baik kamu mencari pekerjaan baru di sini.","answers":["与其搬到别的城市,不如你在这儿找新工作"]}]},{"title":"Latihan 9","note":"宁可...也不","items":[{"id_text":"Dia lebih memilih tidak makan daripada makan makanan yang tidak enak.","answers":["他宁可不吃,也不吃不好吃的东西","她宁可不吃,也不吃不好吃的东西"]},{"id_text":"Aku lebih memilih berjalan kaki daripada naik bis yang penuh sesak.","answers":["我宁可走路,也不坐挤的公共汽车"]},{"id_text":"Dia lebih memilih diam daripada berbohong.","answers":["他宁可不说话,也不撒谎","她宁可不说话,也不撒谎"]},{"id_text":"Kami lebih memilih menunggu daripada terburu-buru.","answers":["我们宁可等,也不着急"]},{"id_text":"Aku lebih memilih rugi uang daripada kehilangan kepercayaan.","answers":["我宁可损失钱,也不失去信任"]},{"id_text":"Aku lebih memilih menunggu daripada terburu-buru mengambil keputusan.","answers":["我宁可等,也不着急做决定"]},{"id_text":"Dia lebih memilih bekerja keras daripada meminta bantuan.","answers":["他宁可努力工作,也不求帮助","她宁可努力工作,也不求帮助"]},{"id_text":"Kami lebih memilih pulang daripada tinggal di sini lebih lama.","answers":["我们宁可回家,也不在这儿多待","我们宁可回家,也不在这里多待"]},{"id_text":"Aku lebih memilih membayar lebih daripada membeli barang buruk.","answers":["我宁可多付钱,也不买不好的东西"]},{"id_text":"Dia lebih memilih sendirian daripada bersama orang yang tidak dia sukai.","answers":["他宁可一个人,也不跟他不喜欢的人在一起","她宁可一个人,也不跟她不喜欢的人在一起"]},{"id_text":"Kami lebih memilih berjalan kaki daripada menunggu taksi lama.","answers":["我们宁可走路,也不等出租车"]},{"id_text":"Aku lebih memilih diam daripada berdebat.","answers":["我宁可不说话,也不吵架"]},{"id_text":"Dia lebih memilih gagal mencoba daripada tidak mencoba sama sekali.","answers":["他宁可尝试失败,也不放弃尝试","她宁可尝试失败,也不放弃尝试"]},{"id_text":"Kami lebih memilih menabung daripada boros.","answers":["我们宁可存钱,也不浪费"]},{"id_text":"Aku lebih memilih pindah daripada tinggal di tempat yang bising.","answers":["我宁可搬家,也不住在吵的地方"]},{"id_text":"Aku lebih memilih bekerja di kantor kecil daripada menganggur di rumah.","answers":["我宁可在小公司工作,也不在家闲着"]},{"id_text":"Dia lebih memilih belajar sendiri di rumah daripada belajar di kelas yang berisik.","answers":["他宁可在家自己学,也不在吵的教室学习","她宁可在家自己学,也不在吵的教室学习"]},{"id_text":"Kami lebih memilih menunggu di stasiun daripada naik taksi yang mahal.","answers":["我们宁可在车站等,也不坐贵的出租车"]},{"id_text":"Aku lebih memilih pulang lebih awal dari kantor daripada terlambat makan malam.","answers":["我宁可早点儿从办公室回家,也不想吃饭迟到"]},{"id_text":"Dia lebih memilih tinggal di kota kecil daripada hidup sibuk di kota besar.","answers":["他宁可住在小城市,也不想在大城市过忙碌的生活","她宁可住在小城市,也不想在大城市过忙碌的生活"]}]},{"title":"Latihan 10","note":"之所以...是因为","items":[{"id_text":"Alasan aku terlambat adalah karena jalanan macet.","answers":["我之所以迟到,是因为路上堵车"]},{"id_text":"Alasan dia berhasil adalah karena dia bekerja keras.","answers":["他之所以成功,是因为他很努力","她之所以成功,是因为她很努力"]},{"id_text":"Alasan aku belajar bahasa Mandarin adalah karena aku ingin bekerja di Tiongkok.","answers":["我之所以学汉语,是因为我想在中国工作"]},{"id_text":"Alasan dia sedih adalah karena kehilangan pekerjaannya.","answers":["他之所以难过,是因为他失去了工作","她之所以难过,是因为她失去了工作"]},{"id_text":"Alasan harga naik adalah karena permintaan meningkat.","answers":["价格之所以上涨,是因为需求增加了"]},{"id_text":"Alasan dia tidak datang adalah karena dia sakit.","answers":["他之所以没来,是因为他生病了","她之所以没来,是因为她生病了"]},{"id_text":"Alasan aku menyukai kota ini adalah karena orangnya ramah.","answers":["我之所以喜欢这个城市,是因为人们很友好"]},{"id_text":"Alasan dia berhenti bekerja adalah karena masalah kesehatan.","answers":["他之所以辞职,是因为健康问题","她之所以辞职,是因为健康问题"]},{"id_text":"Alasan proyek ini tertunda adalah karena kurangnya dana.","answers":["这个项目之所以延误,是因为资金不够"]},{"id_text":"Alasan aku belajar keras adalah karena aku ingin masuk universitas itu.","answers":["我之所以努力学习,是因为我想上那所大学"]},{"id_text":"Alasan mereka pindah adalah karena pekerjaan baru.","answers":["他们之所以搬家,是因为新的工作"]},{"id_text":"Alasan dia percaya padamu adalah karena kamu selalu jujur.","answers":["他之所以相信你,是因为你一直很诚实","她之所以相信你,是因为你一直很诚实"]},{"id_text":"Alasan harga itu turun adalah karena permintaan berkurang.","answers":["价格之所以下降,是因为需求减少了"]},{"id_text":"Alasan aku memilih pekerjaan ini adalah karena aku menyukai tantangan.","answers":["我之所以选这个工作,是因为我喜欢挑战"]},{"id_text":"Alasan dia menangis adalah karena dia sangat bahagia.","answers":["他之所以哭,是因为他很高兴","她之所以哭,是因为她很高兴"]},{"id_text":"Alasan aku terlambat sampai di kantor pagi ini adalah karena jalanan macet.","answers":["我今天早上之所以晚到办公室,是因为路上堵车"]},{"id_text":"Alasan dia pindah ke kota ini adalah karena pekerjaan barunya.","answers":["他之所以搬到这个城市,是因为他的新工作","她之所以搬到这个城市,是因为她的新工作"]},{"id_text":"Alasan kami belajar di perpustakaan setiap malam adalah karena rumah kami ramai.","answers":["我们之所以每天晚上在图书馆学习,是因为我们家很吵"]},{"id_text":"Alasan sekolah itu terkenal adalah karena gurunya sangat baik.","answers":["那个学校之所以有名,是因为老师很好"]},{"id_text":"Alasan dia berhenti bekerja di kantor itu adalah karena gajinya terlalu rendah.","answers":["他之所以从那家公司辞职,是因为工资太低了","她之所以从那家公司辞职,是因为工资太低了"]}]}],"5":[{"title":"Latihan 1","note":"不仅如此","items":[{"id_text":"Bukan hanya itu, dia bahkan membantu semua tetangganya.","answers":["不仅如此,他还帮助了所有邻居","不仅如此,她还帮助了所有邻居"]},{"id_text":"Bukan hanya itu, perusahaan itu juga memperluas pasarnya.","answers":["不仅如此,那家公司还扩大了市场"]},{"id_text":"Bukan hanya itu, dia bahkan belajar bahasa lain.","answers":["不仅如此,他还学了别的语言","不仅如此,她还学了别的语言"]},{"id_text":"Bukan hanya itu, mereka juga membangun sekolah baru.","answers":["不仅如此,他们还建了一所新学校"]},{"id_text":"Bukan hanya itu, dia bahkan menulis sebuah buku.","answers":["不仅如此,他还写了一本书","不仅如此,她还写了一本书"]},{"id_text":"Bukan hanya itu, kualitas produknya juga meningkat.","answers":["不仅如此,产品的质量也提高了"]},{"id_text":"Bukan hanya itu, dia bahkan mengajari anak-anak lain secara gratis.","answers":["不仅如此,他还免费教别的孩子","不仅如此,她还免费教别的孩子"]},{"id_text":"Bukan hanya itu, penjualan mereka juga naik drastis.","answers":["不仅如此,他们的销售也大幅上升了"]},{"id_text":"Bukan hanya itu, dia bahkan menyumbangkan sebagian gajinya.","answers":["不仅如此,他还捐了一部分工资","不仅如此,她还捐了一部分工资"]},{"id_text":"Bukan hanya itu, kota ini juga menjadi lebih hijau.","answers":["不仅如此,这个城市也变得更绿了"]},{"id_text":"Bukan hanya itu, dia bahkan belajar memasak sendiri.","answers":["不仅如此,他还自己学会了做饭","不仅如此,她还自己学会了做饭"]},{"id_text":"Bukan hanya itu, perusahaan itu juga membuka cabang baru.","answers":["不仅如此,那家公司还开了新的分店"]},{"id_text":"Bukan hanya itu, dia bahkan menulis surat terima kasih.","answers":["不仅如此,他还写了感谢信","不仅如此,她还写了感谢信"]},{"id_text":"Bukan hanya itu, mereka juga memperbaiki jalan yang rusak.","answers":["不仅如此,他们还修好了坏的路"]},{"id_text":"Bukan hanya itu, dia bahkan mengubah kebiasaan buruknya.","answers":["不仅如此,他还改掉了坏习惯","不仅如此,她还改掉了坏习惯"]},{"id_text":"Bukan hanya itu, dia bahkan bekerja di kantor sampai larut malam demi menyelesaikan proyek itu.","answers":["不仅如此,他还在办公室工作到深夜来完成那个项目","不仅如此,她还在办公室工作到深夜来完成那个项目"]},{"id_text":"Bukan hanya itu, sekolah itu juga membangun perpustakaan baru tahun ini.","answers":["不仅如此,那所学校今年还建了新图书馆"]},{"id_text":"Bukan hanya itu, dia bahkan mengajar di dua sekolah sekaligus.","answers":["不仅如此,他还同时在两所学校教书","不仅如此,她还同时在两所学校教书"]},{"id_text":"Bukan hanya itu, mereka juga membuka kantor baru di kota lain.","answers":["不仅如此,他们还在别的城市开了新办公室"]},{"id_text":"Bukan hanya itu, dia bahkan pindah ke kota itu demi pekerjaan barunya.","answers":["不仅如此,他还为了新工作搬到了那个城市","不仅如此,她还为了新工作搬到了那个城市"]}]},{"title":"Latihan 2","note":"与其说...不如说","items":[{"id_text":"Daripada dikatakan dia malas, lebih tepat dikatakan dia tidak punya semangat.","answers":["与其说他懒,不如说他没有动力","与其说她懒,不如说她没有动力"]},{"id_text":"Daripada dikatakan ini keberuntungan, lebih tepat dikatakan ini hasil kerja keras.","answers":["与其说这是运气,不如说这是努力的结果"]},{"id_text":"Daripada dikatakan dia marah, lebih tepat dikatakan dia kecewa.","answers":["与其说他生气,不如说他失望","与其说她生气,不如说她失望"]},{"id_text":"Daripada dikatakan sulit, lebih tepat dikatakan butuh waktu.","answers":["与其说难,不如说需要时间"]},{"id_text":"Daripada dikatakan itu masalah kecil, lebih tepat dikatakan itu masalah besar.","answers":["与其说那是小问题,不如说那是大问题"]},{"id_text":"Daripada dikatakan itu kebetulan, lebih tepat dikatakan itu takdir.","answers":["与其说那是巧合,不如说那是命运"]},{"id_text":"Daripada dikatakan dia pelit, lebih tepat dikatakan dia hemat.","answers":["与其说他小气,不如说他节俭","与其说她小气,不如说她节俭"]},{"id_text":"Daripada dikatakan ini kesalahan, lebih tepat dikatakan ini pelajaran.","answers":["与其说这是错误,不如说这是教训"]},{"id_text":"Daripada dikatakan dia keras kepala, lebih tepat dikatakan dia teguh pendirian.","answers":["与其说他固执,不如说他坚持原则","与其说她固执,不如说她坚持原则"]},{"id_text":"Daripada dikatakan ini bencana, lebih tepat dikatakan ini tantangan.","answers":["与其说这是灾难,不如说这是挑战"]},{"id_text":"Daripada dikatakan dia egois, lebih tepat dikatakan dia melindungi dirinya.","answers":["与其说他自私,不如说他在保护自己","与其说她自私,不如说她在保护自己"]},{"id_text":"Daripada dikatakan hasil ini buruk, lebih tepat dikatakan masih ada ruang untuk perbaikan.","answers":["与其说这个结果不好,不如说还有改进的空间"]},{"id_text":"Daripada dikatakan dia beruntung, lebih tepat dikatakan dia sudah mempersiapkan diri.","answers":["与其说他运气好,不如说他准备充分","与其说她运气好,不如说她准备充分"]},{"id_text":"Daripada dikatakan situasi ini rumit, lebih tepat dikatakan kita kurang informasi.","answers":["与其说情况复杂,不如说我们信息不够"]},{"id_text":"Daripada dikatakan dia dingin, lebih tepat dikatakan dia pemalu.","answers":["与其说他冷漠,不如说他害羞","与其说她冷漠,不如说她害羞"]},{"id_text":"Daripada dikatakan dia malas di kantor, lebih tepat dikatakan pekerjaannya terlalu banyak.","answers":["与其说他在办公室懒,不如说他的工作太多了","与其说她在办公室懒,不如说她的工作太多了"]},{"id_text":"Daripada dikatakan sekolah itu buruk, lebih tepat dikatakan muridnya kurang berusaha.","answers":["与其说那个学校不好,不如说学生不够努力"]},{"id_text":"Daripada dikatakan ini keberuntungan di kota baru, lebih tepat dikatakan ini hasil kerja kerasnya.","answers":["与其说这是他在新城市的运气,不如说是他努力的结果","与其说这是她在新城市的运气,不如说是她努力的结果"]},{"id_text":"Daripada dikatakan proyek itu gagal di kantor, lebih tepat dikatakan waktu perencanaannya terlalu singkat.","answers":["与其说那个项目在公司失败了,不如说计划的时间太短了"]},{"id_text":"Daripada dikatakan dia sombong di kelas, lebih tepat dikatakan dia sangat percaya diri.","answers":["与其说他在班里骄傲,不如说他很自信","与其说她在班里骄傲,不如说她很自信"]}]},{"title":"Latihan 3","note":"即使...也","items":[{"id_text":"Sekalipun kamu tidak setuju, aku tetap akan melakukannya.","answers":["即使你不同意,我也会做"]},{"id_text":"Sekalipun hujan deras, dia tetap akan pergi.","answers":["即使下大雨,他也会去","即使下大雨,她也会去"]},{"id_text":"Sekalipun sangat sulit, kita harus mencoba.","answers":["即使很难,我们也得试试"]},{"id_text":"Sekalipun tidak ada orang yang percaya, aku tetap yakin.","answers":["即使没有人相信,我也坚信"]},{"id_text":"Sekalipun gagal berkali-kali, dia tidak akan menyerah.","answers":["即使失败很多次,他也不会放弃","即使失败很多次,她也不会放弃"]},{"id_text":"Sekalipun tidak ada yang membantu, aku akan tetap mencoba sendiri.","answers":["即使没有人帮忙,我也会自己试试"]},{"id_text":"Sekalipun harganya naik, dia tetap membelinya.","answers":["即使价格上涨了,他也会买","即使价格上涨了,她也会买"]},{"id_text":"Sekalipun jalannya sulit, kami tetap akan melanjutkan.","answers":["即使路很难走,我们也会继续"]},{"id_text":"Sekalipun dia marah, aku tetap akan mengatakan kebenaran.","answers":["即使他生气,我也会说实话","即使她生气,我也会说实话"]},{"id_text":"Sekalipun waktunya sedikit, kita harus menyelesaikannya.","answers":["即使时间不多,我们也得做完"]},{"id_text":"Sekalipun tidak ada yang melihat, dia tetap jujur.","answers":["即使没有人看见,他也很诚实","即使没有人看见,她也很诚实"]},{"id_text":"Sekalipun risikonya besar, mereka tetap memutuskan untuk mencoba.","answers":["即使风险很大,他们也决定试一试"]},{"id_text":"Sekalipun sudah terlambat, kita tetap harus pergi.","answers":["即使已经晚了,我们也得去"]},{"id_text":"Sekalipun sulit dipercaya, itu adalah kenyataan.","answers":["即使很难相信,那也是事实"]},{"id_text":"Sekalipun kamu tidak meminta, aku tetap akan membantumu.","answers":["即使你不请求,我也会帮你"]},{"id_text":"Sekalipun harus bekerja di kantor sampai malam, dia tetap akan menyelesaikan tugas itu.","answers":["即使得在办公室工作到很晚,他也会完成那个任务","即使得在办公室工作到很晚,她也会完成那个任务"]},{"id_text":"Sekalipun sekolahnya jauh dari rumah, dia tetap akan pergi setiap hari.","answers":["即使学校离家很远,他也会每天去","即使学校离家很远,她也会每天去"]},{"id_text":"Sekalipun harus menunggu lama di stasiun, kami tetap akan menaiki kereta itu.","answers":["即使得在车站等很久,我们也会坐那班火车"]},{"id_text":"Sekalipun cuaca buruk di kota itu, dia tetap akan pergi ke sana besok.","answers":["即使那个城市天气不好,他明天也会去","即使那个城市天气不好,她明天也会去"]},{"id_text":"Sekalipun harganya naik di semua toko, dia tetap akan membeli barang itu.","answers":["即使所有商店的价格都涨了,他也会买那个东西","即使所有商店的价格都涨了,她也会买那个东西"]}]},{"title":"Latihan 4","note":"万一","items":[{"id_text":"Andaikan besok hujan, acara akan dibatalkan.","answers":["万一明天下雨,活动就会被取消","万一明天下雨,活动会被取消"]},{"id_text":"Andaikan dia tidak datang, kita harus punya rencana lain.","answers":["万一他不来,我们得有别的计划","万一她不来,我们得有别的计划"]},{"id_text":"Andaikan terjadi kecelakaan, segera hubungi aku.","answers":["万一发生事故,马上联系我"]},{"id_text":"Andaikan kamu gagal, jangan menyerah.","answers":["万一你失败了,别放弃"]},{"id_text":"Andaikan barang itu rusak, tolong beritahu aku.","answers":["万一那个东西坏了,请告诉我"]},{"id_text":"Andaikan dia berubah pikiran, beritahu aku segera.","answers":["万一他改变主意,马上告诉我","万一她改变主意,马上告诉我"]},{"id_text":"Andaikan mobil itu mogok, kita harus punya rencana cadangan.","answers":["万一那辆车坏了,我们得有备用计划"]},{"id_text":"Andaikan aku tidak bisa datang, tolong mulai tanpa aku.","answers":["万一我不能来,请不要等我开始"]},{"id_text":"Andaikan cuaca memburuk, acara akan dipindah ke dalam ruangan.","answers":["万一天气变坏,活动就会搬到室内"]},{"id_text":"Andaikan dia tidak setuju, kita perlu rencana lain.","answers":["万一他不同意,我们需要别的计划","万一她不同意,我们需要别的计划"]},{"id_text":"Andaikan aku lupa, tolong ingatkan aku.","answers":["万一我忘了,请提醒我"]},{"id_text":"Andaikan uangnya tidak cukup, kita bisa meminjam.","answers":["万一钱不够,我们可以借"]},{"id_text":"Andaikan pesawat itu tertunda, kita akan menunggu di bandara.","answers":["万一飞机延误,我们就在机场等"]},{"id_text":"Andaikan dia salah paham, jelaskan lagi padanya.","answers":["万一他误会了,再跟他解释一下","万一她误会了,再跟她解释一下"]},{"id_text":"Andaikan hujan turun, bawalah payung.","answers":["万一下雨,带上雨伞吧"]},{"id_text":"Andaikan dia terlambat sampai di kantor besok, beri tahu bosnya lebih dulu.","answers":["万一他明天晚到办公室,先告诉老板","万一她明天晚到办公室,先告诉老板"]},{"id_text":"Andaikan hujan turun saat acara di taman itu, kita pindah ke dalam gedung.","answers":["万一那个活动在公园下雨,我们就搬到室内"]},{"id_text":"Andaikan komputer di kantor rusak besok pagi, gunakan yang di ruang lain.","answers":["万一明天早上办公室的电脑坏了,用别的房间的"]},{"id_text":"Andaikan dia tidak bisa datang ke sekolah besok, kirimkan catatan pelajaran padanya.","answers":["万一他明天不能来学校,把笔记发给他","万一她明天不能来学校,把笔记发给她"]},{"id_text":"Andaikan kereta itu terlambat tiba di stasiun, tunggu di sana.","answers":["万一那班火车晚到车站,就在那儿等"]}]},{"title":"Latihan 5","note":"除非...否则","items":[{"id_text":"Kecuali kamu meminta maaf, jika tidak dia tidak akan memaafkanmu.","answers":["除非你道歉,否则他不会原谅你","除非你道歉,否则她不会原谅你"]},{"id_text":"Kecuali ada izin khusus, jika tidak kamu tidak boleh masuk.","answers":["除非有特别许可,否则你不能进去"]},{"id_text":"Kecuali cuacanya membaik, jika tidak pertandingan akan ditunda.","answers":["除非天气变好,否则比赛会延期"]},{"id_text":"Kecuali kamu berlatih lebih banyak, jika tidak kamu tidak akan lulus.","answers":["除非你多练习,否则你不会通过"]},{"id_text":"Kecuali dia berubah pikiran, jika tidak rencana ini tidak akan berhasil.","answers":["除非他改变主意,否则这个计划不会成功","除非她改变主意,否则这个计划不会成功"]},{"id_text":"Kecuali kamu istirahat, jika tidak kamu akan semakin sakit.","answers":["除非你休息,否则你会越来越不舒服"]},{"id_text":"Kecuali harganya turun, jika tidak aku tidak akan membelinya.","answers":["除非价格下降,否则我不会买"]},{"id_text":"Kecuali dia meminta maaf secara langsung, jika tidak aku tidak akan memaafkannya.","answers":["除非他当面道歉,否则我不会原谅他","除非她当面道歉,否则我不会原谅她"]},{"id_text":"Kecuali kita bekerja sama, jika tidak proyek ini tidak akan selesai.","answers":["除非我们合作,否则这个项目不会完成"]},{"id_text":"Kecuali kamu memiliki bukti, jika tidak tuduhan itu tidak akan diterima.","answers":["除非你有证据,否则那个指控不会被接受"]},{"id_text":"Kecuali ada perubahan besar, jika tidak rencana ini akan tetap sama.","answers":["除非有大的变化,否则这个计划会保持一样"]},{"id_text":"Kecuali dia berubah sikapnya, jika tidak hubungan ini akan berakhir.","answers":["除非他改变态度,否则这段关系会结束","除非她改变态度,否则这段关系会结束"]},{"id_text":"Kecuali cuaca membaik, jika tidak penerbangan akan tetap ditunda.","answers":["除非天气好转,否则航班会继续延误"]},{"id_text":"Kecuali kamu berlatih setiap hari, jika tidak kamu tidak akan maju.","answers":["除非你每天练习,否则你不会进步"]},{"id_text":"Kecuali pemerintah bertindak, jika tidak masalah ini akan semakin buruk.","answers":["除非政府采取行动,否则这个问题会越来越严重"]},{"id_text":"Kecuali kamu bekerja lebih rajin di kantor, jika tidak kamu tidak akan naik jabatan tahun ini.","answers":["除非你在公司更努力工作,否则你今年不会升职"]},{"id_text":"Kecuali sekolah itu memperbaiki fasilitasnya, jika tidak murid akan pindah ke sekolah lain.","answers":["除非那所学校改善设施,否则学生会转到别的学校"]},{"id_text":"Kecuali cuaca di kota itu membaik besok, jika tidak acara akan dipindahkan ke dalam ruangan.","answers":["除非那个城市明天天气变好,否则活动会移到室内"]},{"id_text":"Kecuali kamu tiba di stasiun tepat waktu, jika tidak kereta akan berangkat tanpamu.","answers":["除非你准时到车站,否则火车会没有你就出发"]},{"id_text":"Kecuali dia menjelaskan alasannya di rapat itu, jika tidak semua akan tetap bingung.","answers":["除非他在那个会议上解释原因,否则大家还是会糊涂","除非她在那个会议上解释原因,否则大家还是会糊涂"]}]},{"title":"Latihan 6","note":"甚至","items":[{"id_text":"Bahkan anak kecil pun mengerti kebenaran ini.","answers":["甚至小孩子都懂这个道理"]},{"id_text":"Dia bahkan lupa nama sendiri.","answers":["他甚至忘了自己的名字","她甚至忘了自己的名字"]},{"id_text":"Cuacanya bahkan lebih dingin dari musim dingin lalu.","answers":["天气甚至比去年冬天更冷"]},{"id_text":"Dia bahkan tidak makan sepanjang hari.","answers":["他甚至一整天都没吃饭","她甚至一整天都没吃饭"]},{"id_text":"Bahkan para ahli pun tidak bisa menjawab pertanyaan ini.","answers":["甚至专家都回答不了这个问题"]},{"id_text":"Dia bahkan tidak ingat di mana dia meletakkan kuncinya.","answers":["他甚至不记得钥匙放在哪儿了","她甚至不记得钥匙放在哪儿了"]},{"id_text":"Bahkan setelah gagal berkali-kali, dia tetap mencoba.","answers":["甚至失败很多次以后,他还是继续尝试","甚至失败很多次以后,她还是继续尝试"]},{"id_text":"Harganya bahkan lebih murah dari yang aku duga.","answers":["价格甚至比我想的更便宜"]},{"id_text":"Dia bahkan tidak mengucapkan terima kasih.","answers":["他甚至没有说谢谢","她甚至没有说谢谢"]},{"id_text":"Bahkan anak-anak sekolah dasar pun tahu tentang berita ini.","answers":["甚至小学生都知道这个新闻"]},{"id_text":"Dia bahkan menjual mobilnya untuk membayar hutang itu.","answers":["他甚至卖了车来还那笔债","她甚至卖了车来还那笔债"]},{"id_text":"Suhu hari ini bahkan lebih rendah dari kemarin.","answers":["今天的气温甚至比昨天更低"]},{"id_text":"Dia bahkan tidak tahu nama tetangganya.","answers":["他甚至不知道邻居的名字","她甚至不知道邻居的名字"]},{"id_text":"Bahkan setelah diberi peringatan, dia tetap melanggar aturan.","answers":["甚至被警告以后,他还是违反了规定","甚至被警告以后,她还是违反了规定"]},{"id_text":"Dia bahkan lupa hari ulang tahunnya sendiri.","answers":["他甚至忘了自己的生日","她甚至忘了自己的生日"]},{"id_text":"Bahkan di kantor pun dia terus memikirkan masalah keluarganya.","answers":["甚至在办公室,他也一直在想家里的问题","甚至在办公室,她也一直在想家里的问题"]},{"id_text":"Dia bahkan bekerja di rumah sakit itu selama akhir pekan.","answers":["他甚至周末都在那家医院工作","她甚至周末都在那家医院工作"]},{"id_text":"Bahkan gurunya pun datang ke sekolah lebih awal dari murid-murid.","answers":["甚至老师都比学生早到学校"]},{"id_text":"Dia bahkan tidak pulang ke rumah selama seminggu karena proyek di kantor.","answers":["他甚至因为公司的项目一个星期没回家","她甚至因为公司的项目一个星期没回家"]},{"id_text":"Bahkan di kota kecil itu pun harga rumah sangat mahal sekarang.","answers":["甚至在那个小城市,现在房价也很贵"]}]},{"title":"Latihan 7","note":"何况","items":[{"id_text":"Orang dewasa saja tidak mengerti, apalagi anak-anak.","answers":["大人都不懂,何况孩子呢","大人都不懂,何况孩子"]},{"id_text":"Aku saja tidak bisa melakukannya, apalagi dia.","answers":["我都做不到,何况他呢","我都做不到,何况她呢"]},{"id_text":"Hari libur saja macet, apalagi hari kerja.","answers":["假期都堵车,何况平时呢"]},{"id_text":"Yang mudah saja dia tidak bisa, apalagi yang sulit.","answers":["简单的他都不会,何况难的呢","简单的她都不会,何况难的呢"]},{"id_text":"Waktu senggang saja tidak ada, apalagi waktu untuk berlibur.","answers":["空闲时间都没有,何况度假的时间呢"]},{"id_text":"Orang kaya saja mengeluh soal harga, apalagi orang biasa.","answers":["有钱人都抱怨价格,何况普通人呢"]},{"id_text":"Guru saja tidak bisa menjawab, apalagi murid.","answers":["老师都回答不了,何况学生呢"]},{"id_text":"Cuaca cerah saja dia malas keluar, apalagi hujan.","answers":["天晴他都懒得出门,何况下雨呢","天晴她都懒得出门,何况下雨呢"]},{"id_text":"Ahlinya saja butuh waktu lama, apalagi pemula.","answers":["专家都需要很长时间,何况新手呢"]},{"id_text":"Kota besar saja kekurangan air, apalagi desa kecil.","answers":["大城市都缺水,何况小村子呢"]},{"id_text":"Uang banyak saja tidak membuatnya puas, apalagi uang sedikit.","answers":["钱多他都不满足,何况钱少呢","钱多她都不满足,何况钱少呢"]},{"id_text":"Jalan tol saja macet, apalagi jalan biasa.","answers":["高速公路都堵车,何况普通的路呢"]},{"id_text":"Orang dewasa saja takut, apalagi anak-anak.","answers":["大人都害怕,何况孩子呢"]},{"id_text":"Hari biasa saja ramai, apalagi akhir pekan.","answers":["平时都很热闹,何况周末呢"]},{"id_text":"Kalimat sederhana saja dia salah, apalagi kalimat yang rumit.","answers":["简单的句子他都错,何况复杂的句子呢","简单的句子她都错,何况复杂的句子呢"]},{"id_text":"Karyawan lama saja tidak paham aturan baru itu di kantor, apalagi karyawan baru.","answers":["老员工在公司都不懂那个新规定,何况新员工呢"]},{"id_text":"Guru saja kesulitan mengajar materi itu di sekolah, apalagi murid yang belajar sendiri di rumah.","answers":["老师在学校教那个内容都觉得难,何况自己在家学习的学生呢"]},{"id_text":"Aku yang tinggal di sini bertahun-tahun saja tersesat, apalagi turis yang baru datang ke kota ini.","answers":["我住在这儿好几年都会迷路,何况刚来这个城市的游客呢"]},{"id_text":"Mobil baru saja rusak di jalan itu, apalagi mobil tua.","answers":["新车在那条路上都会坏,何况旧车呢"]},{"id_text":"Waktu kerja saja tidak cukup di kantor, apalagi waktu untuk berlibur.","answers":["上班时间在公司都不够,何况度假的时间呢"]}]},{"title":"Latihan 8","note":"何必","items":[{"id_text":"Untuk apa kamu perlu khawatir tentang hal sekecil ini?","answers":["你何必为这么小的事担心呢","你何必为这么小的事情担心呢"]},{"id_text":"Untuk apa harus marah kalau bisa dibicarakan baik-baik?","answers":["何必生气,好好说不行吗"]},{"id_text":"Untuk apa kamu membeli barang mahal kalau yang murah juga cukup?","answers":["你何必买贵的,便宜的也够用"]},{"id_text":"Untuk apa terburu-buru, waktu masih banyak.","answers":["你何必着急,时间还早呢"]},{"id_text":"Untuk apa berbohong kalau kejujuran lebih baik?","answers":["何必撒谎,诚实不是更好吗"]},{"id_text":"Untuk apa harus membandingkan diri dengan orang lain?","answers":["何必跟别人比较呢"]},{"id_text":"Untuk apa kamu harus menyembunyikan perasaanmu?","answers":["你何必隐藏自己的感情呢"]},{"id_text":"Untuk apa harus terburu-buru membuat keputusan?","answers":["何必急着做决定呢"]},{"id_text":"Untuk apa kamu harus mengingat hal yang menyakitkan itu?","answers":["你何必记住那件伤心的事呢"]},{"id_text":"Untuk apa harus bertengkar soal hal kecil ini?","answers":["何必为这点小事吵架呢"]},{"id_text":"Untuk apa kamu harus meminta maaf kalau kamu tidak salah?","answers":["你何必道歉,你又没有错"]},{"id_text":"Untuk apa harus khawatir akan hal yang belum terjadi?","answers":["何必担心还没发生的事呢"]},{"id_text":"Untuk apa kamu harus memaksakan diri kalau lelah?","answers":["你何必勉强自己,累了就休息"]},{"id_text":"Untuk apa harus menunda kalau bisa dilakukan sekarang?","answers":["何必拖延,现在就能做"]},{"id_text":"Untuk apa kamu harus mendengarkan gosip itu?","answers":["你何必听那些闲话呢"]},{"id_text":"Untuk apa kamu harus bekerja lembur di kantor kalau pekerjaannya bisa selesai besok?","answers":["工作明天能做完,你何必在公司加班呢"]},{"id_text":"Untuk apa kamu pindah ke kota lain kalau pekerjaanmu di sini bagus?","answers":["你在这儿的工作很好,何必搬到别的城市呢"]},{"id_text":"Untuk apa terburu-buru ke stasiun kalau kereta masih lama?","answers":["火车还早,你何必急着去车站呢"]},{"id_text":"Untuk apa kamu khawatir tentang sekolah barunya kalau dia anak yang mandiri?","answers":["他是个独立的孩子,你何必担心他的新学校呢","她是个独立的孩子,你何必担心她的新学校呢"]},{"id_text":"Untuk apa kamu membeli rumah besar di kota mahal itu kalau kamu tinggal sendirian?","answers":["你一个人住,何必在那个贵的城市买大房子呢"]}]},{"title":"Latihan 9","note":"越...越","items":[{"id_text":"Semakin dia menjelaskan, semakin membuat orang bingung.","answers":["他越解释,越让人糊涂","她越解释,越让人糊涂"]},{"id_text":"Semakin banyak berlatih, semakin mahir kamu.","answers":["你越练习,越熟练"]},{"id_text":"Semakin dipikirkan, semakin terasa aneh.","answers":["越想越觉得奇怪"]},{"id_text":"Semakin lama ditunggu, semakin tidak sabar.","answers":["越等越不耐烦"]},{"id_text":"Semakin banyak dia bicara, semakin sedikit orang percaya.","answers":["他越说,越少人相信","她越说,越少人相信"]},{"id_text":"Semakin banyak kamu membaca, semakin luas pengetahuanmu.","answers":["你越读书,知识越广"]},{"id_text":"Semakin cepat kita berangkat, semakin awal kita sampai.","answers":["我们越早出发,越早到"]},{"id_text":"Semakin dia mencoba menyembunyikannya, semakin jelas kelihatan.","answers":["他越想隐藏,越明显","她越想隐藏,越明显"]},{"id_text":"Semakin tinggi harganya, semakin sedikit orang yang membeli.","answers":["价格越高,买的人越少"]},{"id_text":"Semakin lama kamu menunggu, semakin sulit memutuskan.","answers":["你越等,越难决定"]},{"id_text":"Semakin banyak berlatih bahasa Mandarin, semakin lancar bicaranya.","answers":["你越练习汉语,说得越流利"]},{"id_text":"Semakin dia terburu-buru, semakin banyak kesalahan yang dibuatnya.","answers":["他越着急,错误越多","她越着急,错误越多"]},{"id_text":"Semakin jauh kita berjalan, semakin lelah kita.","answers":["我们越走,越累"]},{"id_text":"Semakin sering bertemu, semakin akrab kita.","answers":["我们越常见面,越熟悉"]},{"id_text":"Semakin dia dilarang, semakin dia ingin mencobanya.","answers":["他越被禁止,越想试","她越被禁止,越想试"]},{"id_text":"Semakin lama dia bekerja di kantor itu, semakin dia menyukai pekerjaannya.","answers":["他在那家公司工作得越久,越喜欢他的工作","她在那家公司工作得越久,越喜欢她的工作"]},{"id_text":"Semakin sering aku belajar di perpustakaan, semakin aku memahami pelajaran itu.","answers":["我越常在图书馆学习,越懂那门课"]},{"id_text":"Semakin jauh dia pergi dari kota itu, semakin dia merindukan rumahnya.","answers":["他离那个城市越远,越想家","她离那个城市越远,越想家"]},{"id_text":"Semakin banyak orang datang ke acara itu di taman, semakin ramai suasananya.","answers":["来公园那个活动的人越多,气氛越热闹"]},{"id_text":"Semakin cepat kamu tiba di stasiun, semakin sedikit waktu tunggumu.","answers":["你越快到车站,等的时间就越少"]}]},{"title":"Latihan 10","note":"要不是","items":[{"id_text":"Kalau bukan karena bantuanmu, aku pasti tidak akan berhasil.","answers":["要不是你的帮助,我肯定不会成功"]},{"id_text":"Kalau bukan karena hujan, kami pasti sudah sampai.","answers":["要不是下雨,我们早就到了"]},{"id_text":"Kalau bukan karena dia mengingatkan, aku pasti lupa.","answers":["要不是他提醒,我肯定忘了","要不是她提醒,我肯定忘了"]},{"id_text":"Kalau bukan karena macet, dia tidak akan terlambat.","answers":["要不是堵车,他不会迟到","要不是堵车,她不会迟到"]},{"id_text":"Kalau bukan karena kamu, masalah ini tidak akan selesai.","answers":["要不是你,这个问题不会解决"]},{"id_text":"Kalau bukan karena kamu mengingatkan, aku pasti sudah lupa jadwal itu.","answers":["要不是你提醒,我肯定忘了那个时间表"]},{"id_text":"Kalau bukan karena dukungan keluarga, dia tidak akan sampai sejauh ini.","answers":["要不是家人的支持,他不会走到这一步","要不是家人的支持,她不会走到这一步"]},{"id_text":"Kalau bukan karena hujan deras, pertandingan itu pasti sudah dimulai.","answers":["要不是下大雨,比赛早就开始了"]},{"id_text":"Kalau bukan karena dokter itu, dia mungkin tidak akan sembuh.","answers":["要不是那个医生,他可能不会康复","要不是那个医生,她可能不会康复"]},{"id_text":"Kalau bukan karena kesalahan itu, kami tidak akan belajar pelajaran ini.","answers":["要不是那个错误,我们不会学到这个教训"]},{"id_text":"Kalau bukan karena harganya turun, aku tidak akan mampu membelinya.","answers":["要不是价格下降,我不会买得起"]},{"id_text":"Kalau bukan karena bantuan tetangga, rumah itu mungkin sudah terbakar habis.","answers":["要不是邻居帮忙,那个房子可能已经烧没了"]},{"id_text":"Kalau bukan karena kamu menemaniku, aku pasti kesepian.","answers":["要不是你陪着我,我肯定很孤单"]},{"id_text":"Kalau bukan karena macet, kami pasti sudah tiba tepat waktu.","answers":["要不是堵车,我们肯定准时到了"]},{"id_text":"Kalau bukan karena peringatan itu, mereka mungkin sudah dalam bahaya.","answers":["要不是那个警告,他们可能已经有危险了"]},{"id_text":"Kalau bukan karena bosnya baik di kantor itu, dia pasti sudah berhenti bekerja.","answers":["要不是那家公司老板好,他早就辞职了","要不是那家公司老板好,她早就辞职了"]},{"id_text":"Kalau bukan karena bantuan gurunya di sekolah, dia pasti tidak akan lulus ujian itu.","answers":["要不是老师在学校的帮助,他不会通过那个考试","要不是老师在学校的帮助,她不会通过那个考试"]},{"id_text":"Kalau bukan karena kereta itu terlambat di stasiun, kami pasti sudah sampai kota itu.","answers":["要不是那班火车在车站晚点,我们早就到那个城市了"]},{"id_text":"Kalau bukan karena hujan deras di jalan itu, dia pasti tidak akan terlambat ke kantor.","answers":["要不是那条路下大雨,他不会晚到公司","要不是那条路下大雨,她不会晚到公司"]},{"id_text":"Kalau bukan karena kamu menemaniku di rumah sakit itu, aku pasti sangat takut sendirian.","answers":["要不是你在那家医院陪我,我肯定一个人很害怕"]}]}]};
+const VOCAB = {
+  1:[['我','saya'],['你','kamu'],['他','dia (laki-laki)'],['她','dia (perempuan)'],['是','adalah'],['不','tidak'],
+     ['有','punya / ada'],['没有','tidak punya'],['一','satu'],['三','tiga'],['本','kt. bantu bilangan (buku)'],
+     ['这','ini'],['那','itu'],['谁','siapa'],['什么','apa'],['喜欢','suka'],['喝','minum'],['茶','teh'],
+     ['老师','guru'],['学校','sekolah'],['猫','kucing'],['桌子','meja'],['面条','mi'],['想','ingin'],
+     ['现在','sekarang'],['几','berapa (jumlah kecil)'],['书','buku'],['人','orang']],
+  2:[['了','partikel selesai/perubahan'],['已经','sudah'],['在','sedang / di'],['看','menonton / melihat'],
+     ['电视','televisi'],['会','bisa (kemampuan)'],['说','berbicara'],['汉语','bahasa Mandarin'],
+     ['比','dibanding'],['贵','mahal'],['因为','karena'],['所以','maka'],['下雨','hujan'],['觉得','merasa'],
+     ['很','sangat'],['聪明','pintar'],['别','jangan'],['抽烟','merokok'],['得','harus'],['早点儿','lebih awal'],
+     ['回家','pulang'],['先','dulu'],['再','lalu / kemudian'],['点','jam (waktu)'],['还','masih'],['起床','bangun tidur']],
+  3:[['把','kt. depan objek (把-sentence)'],['放','meletakkan'],['上','di atas'],['被','pasif (di-)'],
+     ['蛋糕','kue'],['虽然','walaupun'],['但是','tetapi'],['一边','sambil'],['吃饭','makan'],
+     ['越来越','semakin lama semakin'],['天气','cuaca'],['热','panas'],['除了','selain'],['以外','di luar itu'],
+     ['英语','bahasa Inggris'],['或者','atau'],['公共汽车','bis'],['走路','jalan kaki'],['好像','sepertinya'],
+     ['高兴','senang'],['商店','toko'],['顺便','sekalian'],['帮','membantu'],['买','membeli'],['面包','roti'],
+     ['听不懂','tidak paham (dengar)']],
+  4:[['尽管','meskipun'],['努力','berusaha keras / rajin'],['通过','lulus / melewati'],['考试','ujian'],
+     ['不但','tidak hanya'],['而且','tapi juga'],['只有','hanya dengan'],['才','baru (lalu)'],
+     ['每天','setiap hari'],['练习','berlatih'],['掌握','menguasai'],['无论','tidak peduli'],['难','sulit'],
+     ['一直','terus-menerus'],['微笑','tersenyum'],['一旦','begitu / sekali'],['开会','rapat'],
+     ['既然','karena sudah begitu'],['决定','memutuskan'],['阻止','menghalangi'],['由于','disebabkan oleh'],
+     ['堵车','macet'],['上班','pergi kerja'],['迟到','terlambat'],['与其','daripada'],['不如','lebih baik'],
+     ['办法','cara'],['宁可','lebih memilih'],['好吃','enak'],['之所以','alasan mengapa'],['路上','di jalan']],
+  5:[['不仅如此','bukan hanya itu'],['帮助','membantu'],['邻居','tetangga'],['与其说','daripada dikatakan'],
+     ['不如说','lebih tepat dikatakan'],['懒','malas'],['动力','semangat / motivasi'],['即使','sekalipun'],
+     ['同意','setuju'],['万一','andaikan / kalau-kalau'],['活动','acara'],['取消','dibatalkan'],
+     ['除非','kecuali'],['否则','jika tidak'],['道歉','minta maaf'],['原谅','memaafkan'],['甚至','bahkan'],
+     ['道理','kebenaran / prinsip'],['何况','apalagi'],['大人','orang dewasa'],['何必','untuk apa perlu'],
+     ['担心','khawatir'],['解释','menjelaskan'],['糊涂','bingung'],['要不是','kalau bukan karena'],['成功','berhasil']]
+};
+
+/* ============ STATE ============ */
+let state = {
+  view:'home',       // home | level | identity | practice | summary | vocab | rekap
+  level:null,
+  latihanIdx:null,
+  pendingStart:null,
+  order:[],
+  idx:0,
+  score:0,
+  streak:0,
+  answered:false,
+  lastCorrect:false,
+  vocabLevel:1,
+  student:{nama:'', kelas:''}
+};
+
+try{
+  const savedName = localStorage.getItem('whyfy_student_nama');
+  const savedKelas = localStorage.getItem('whyfy_student_kelas');
+  if(savedName) state.student.nama = savedName;
+  if(savedKelas) state.student.kelas = savedKelas;
+}catch(e){}
+
+/* ============ HELPERS ============ */
+function normalize(s){
+  return (s||'').replace(/[\s,，。.、!！?？'"“”‘’;；:：]/g,'').trim();
+}
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function bestKey(lvl, latihanIdx){return 'whyfy_best_l'+lvl+'_e'+latihanIdx;}
+function getBest(lvl, latihanIdx){return parseInt(localStorage.getItem(bestKey(lvl,latihanIdx))||'0',10);}
+function setBest(lvl, latihanIdx, score){
+  if(score> getBest(lvl,latihanIdx)) localStorage.setItem(bestKey(lvl,latihanIdx), String(score));
+}
+function hasIdentity(){
+  return state.student.nama.trim().length>0 && state.student.kelas.trim().length>0;
+}
+function recordHistory(){
+  try{
+    const history = JSON.parse(localStorage.getItem('whyfy_history')||'[]');
+    const lat = QUESTIONS[state.level][state.latihanIdx];
+    history.push({
+      nama: state.student.nama,
+      kelas: state.student.kelas,
+      level: 'HSK '+state.level,
+      latihanTitle: lat.title,
+      latihanNote: lat.note,
+      score: state.score,
+      total: state.order.length,
+      timestamp: new Date().toLocaleString('id-ID')
+    });
+    localStorage.setItem('whyfy_history', JSON.stringify(history));
+  }catch(e){}
+}
+function exportToExcel(){
+  let history = [];
+  try{ history = JSON.parse(localStorage.getItem('whyfy_history')||'[]'); }catch(e){}
+  if(history.length===0){ alert('Belum ada data latihan yang tercatat.'); return; }
+  const headers = ['Nama','Kelas','Level','Latihan','Pola Tata Bahasa','Skor','Total Soal','Persentase','Tanggal'];
+  const csvEscape = (val)=>{
+    const s = String(val===undefined||val===null?'':val);
+    if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  };
+  const lines = [headers.map(csvEscape).join(',')];
+  history.forEach(h=>{
+    const pct = h.total ? Math.round((h.score/h.total)*100)+'%' : '';
+    lines.push([h.nama, h.kelas, h.level, h.latihanTitle, h.latihanNote, h.score, h.total, pct, h.timestamp].map(csvEscape).join(','));
+  });
+  // UTF-8 BOM so Excel/Numbers correctly detect encoding and display hanzi properly
+  const csvContent = '\uFEFF' + lines.join('\r\n');
+  const blob = new Blob([csvContent], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'whyfy-rekap-nilai.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+function clearHistory(){
+  if(confirm('Yakin ingin menghapus semua data rekap nilai di perangkat ini?')){
+    localStorage.removeItem('whyfy_history');
+    render();
+  }
+}
+
+/* ============ NAV ============ */
+function setActiveNav(id){
+  ['navHome','navVocab','navRekap'].forEach(n=>{
+    const el = document.getElementById(n);
+    if(el) el.classList.toggle('active', n===id);
+  });
+}
+function goHome(){ state.view='home'; setActiveNav('navHome'); render(); }
+function goVocab(){ state.view='vocab'; setActiveNav('navVocab'); render(); }
+function goRekap(){ state.view='rekap'; setActiveNav('navRekap'); render(); }
+function openLevel(lvl){
+  state.level=lvl;
+  state.view='level';
+  render();
+}
+function requestStart(lvl, latihanIdx){
+  if(hasIdentity()){
+    beginPractice(lvl, latihanIdx);
+  } else {
+    state.pendingStart={level:lvl, latihanIdx:latihanIdx};
+    state.view='identity';
+    render();
+  }
+}
+function submitIdentity(){
+  const nama = document.getElementById('inputNama').value.trim();
+  const kelas = document.getElementById('inputKelas').value.trim();
+  const errEl = document.getElementById('identityError');
+  if(!nama || !kelas){
+    errEl.textContent = 'Nama dan asal kelas wajib diisi sebelum memulai latihan.';
+    return;
+  }
+  state.student.nama = nama;
+  state.student.kelas = kelas;
+  try{
+    localStorage.setItem('whyfy_student_nama', nama);
+    localStorage.setItem('whyfy_student_kelas', kelas);
+  }catch(e){}
+  if(state.pendingStart){
+    beginPractice(state.pendingStart.level, state.pendingStart.latihanIdx);
+    state.pendingStart=null;
+  } else {
+    goHome();
+  }
+}
+function changeIdentity(){
+  state.pendingStart=null;
+  state.view='identity';
+  render();
+}
+function beginPractice(lvl, latihanIdx){
+  state.view='practice';
+  state.level=lvl;
+  state.latihanIdx=latihanIdx;
+  const items = QUESTIONS[lvl][latihanIdx].items;
+  state.order=shuffle(items.map((_,i)=>i));
+  state.idx=0;
+  state.score=0;
+  state.streak=0;
+  state.answered=false;
+  render();
+}
+function pickVocabLevel(lvl){ state.vocabLevel=lvl; render(); }
+
+/* ============ ANSWER LOGIC ============ */
+function checkAnswer(){
+  const ta = document.getElementById('answerInput');
+  if(!ta) return;
+  const items = QUESTIONS[state.level][state.latihanIdx].items;
+  const q = items[state.order[state.idx]];
+  const userNorm = normalize(ta.value);
+  const isCorrect = q.answers.some(a=>normalize(a)===userNorm) && userNorm.length>0;
+  state.answered=true;
+  state.lastCorrect=isCorrect;
+  if(isCorrect){ state.score++; state.streak++; }
+  else{ state.streak=0; }
+  render();
+}
+function revealAnswer(){
+  state.answered=true;
+  state.lastCorrect=false;
+  state.streak=0;
+  render();
+}
+function nextQuestion(){
+  state.answered=false;
+  if(state.idx < state.order.length-1){
+    state.idx++;
+    render();
+  } else {
+    setBest(state.level, state.latihanIdx, state.score);
+    recordHistory();
+    state.view='summary';
+    render();
+  }
+}
+function retryLatihan(){ beginPractice(state.level, state.latihanIdx); }
+
+/* ============ RENDER ============ */
+function render(){
+  const app = document.getElementById('app');
+  if(state.view==='home') app.innerHTML = renderHome();
+  else if(state.view==='level') app.innerHTML = renderLevel();
+  else if(state.view==='identity') app.innerHTML = renderIdentity();
+  else if(state.view==='practice') app.innerHTML = renderPractice();
+  else if(state.view==='summary') app.innerHTML = renderSummary();
+  else if(state.view==='vocab') app.innerHTML = renderVocab();
+  else if(state.view==='rekap') app.innerHTML = renderRekap();
+
+  renderStudentPill();
+
+  if(state.view==='practice'){
+    const ta = document.getElementById('answerInput');
+    if(ta){
+      ta.focus();
+      ta.addEventListener('keydown', e=>{
+        if(e.key==='Enter' && !e.shiftKey){
+          e.preventDefault();
+          if(!state.answered) checkAnswer(); else nextQuestion();
+        }
+      });
+    }
+  }
+  if(state.view==='identity'){
+    const nm = document.getElementById('inputNama');
+    if(nm) nm.focus();
+  }
+}
+
+function renderStudentPill(){
+  const holder = document.getElementById('studentPillHolder');
+  if(!holder) return;
+  if(hasIdentity()){
+    holder.innerHTML = `<div class="student-pill">${state.student.nama} · ${state.student.kelas} <button onclick="changeIdentity()">ganti</button></div>`;
+  } else {
+    holder.innerHTML = '';
+  }
+}
+
+function renderHome(){
+  return `
+  <section class="hero">
+    <span class="eyebrow">latihan mengetik hanzi · HSK 1–5</span>
+    <h1>Ubah kalimat Indonesia jadi <span class="cn">汉字</span> yang tepat.</h1>
+    <p class="lede">Whyfy打字 memberimu kalimat berbahasa Indonesia sesuai tata bahasa tiap level HSK. Tugasmu: ketik jawabannya langsung dalam hanzi — bukan pinyin. Setiap level punya 10 variasi latihan (pola tata bahasa berbeda), dan setiap latihan berisi 20 soal grammar campuran — termasuk susunan kalimat lengkap Subjek + Waktu + Tempat + Kata Kerja + Objek. Semua hasil latihan tercatat otomatis di menu Rekap Nilai sebagai database untuk guru.</p>
+    <div class="hero-panel">
+      <div class="grid-demo">
+        <div class="grid-box">我</div><div class="grid-box">是</div><div class="grid-box">老</div><div class="grid-box">师</div>
+      </div>
+      <div class="cap">Setiap jawaban benar akan “dicap” seperti kertas latihan menulis aksara — kotak 田字格 klasik.</div>
+    </div>
+  </section>
+
+  <h2 class="section-title"><small>Pilih level</small>Mulai berlatih</h2>
+  <div class="levels">
+    ${LEVELS.map(l=>{
+      return `<div class="lvl-card" onclick="openLevel(${l.id})">
+        <span class="num">${l.id}</span>
+        <h3>${l.label}</h3>
+        <span class="sub">${l.sub}</span>
+        <p>${l.desc}</p>
+        <div class="go"><span>10 latihan · 20 soal masing-masing</span><span class="best">Buka level →</span></div>
+      </div>`;
+    }).join('')}
+  </div>
+
+  <p class="howto"><b>Cara main:</b> pilih level, lalu pilih salah satu dari 10 latihan yang tersedia. Sebelum mulai, isi nama dan asal kelasmu. Baca kalimat Indonesia, ketik jawaban hanzi di kotak input (pastikan keyboard/IME Mandarin aktif di perangkatmu), lalu tekan “Periksa Jawaban”. Setiap kali kamu menyelesaikan satu latihan, hasilnya otomatis tercatat di menu <b>Rekap Nilai</b> — gunakan menu itu untuk mengunduh database nilai semua siswa sebagai file Excel.</p>
+  `;
+}
+
+function renderLevel(){
+  const lvl = LEVELS.find(l=>l.id===state.level);
+  const latihanList = QUESTIONS[state.level];
+  return `
+  <button class="backlink" onclick="goHome()">← Kembali ke daftar level</button>
+  <h2 class="section-title"><small>${lvl.sub}</small>${lvl.label} — pilih variasi latihan</h2>
+  <p class="howto">${lvl.desc}</p>
+  <div class="latihan-grid">
+    ${latihanList.map((lat,i)=>{
+      const best = getBest(state.level, i);
+      return `<div class="latihan-card" onclick="requestStart(${state.level}, ${i})">
+        <span class="lnum">${lat.title}</span>
+        <h4>${lat.note}</h4>
+        <div class="meta"><span>${lat.items.length} soal</span><span>${best?('Terbaik: '+best+'/'+lat.items.length):'Belum dicoba'}</span></div>
+      </div>`;
+    }).join('')}
+  </div>
+  `;
+}
+
+function renderIdentity(){
+  return `
+  <div class="identity-wrap">
+    <div class="identity-card">
+      <span class="eyebrow">sebelum mulai</span>
+      <h2>Isi data diri dulu, yuk</h2>
+      <p class="sub">Nama dan asal kelas ini akan tampil selama kamu berlatih, di hasil akhir, dan tercatat di rekap nilai.</p>
+      <div class="field">
+        <label for="inputNama">Nama</label>
+        <input id="inputNama" type="text" autocomplete="off" autocapitalize="words" autocorrect="off" placeholder="cth. Siti Rahma" value="${state.student.nama}">
+      </div>
+      <div class="field">
+        <label for="inputKelas">Asal Kelas</label>
+        <input id="inputKelas" type="text" autocomplete="off" autocapitalize="words" autocorrect="off" placeholder="cth. X IPA 2" value="${state.student.kelas}">
+      </div>
+      <div class="form-error" id="identityError"></div>
+      <div class="actions">
+        <button class="btn" onclick="submitIdentity()">Mulai Latihan →</button>
+        <button class="btn ghost" onclick="goHome()">Batal</button>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+function renderPractice(){
+  const lvl = LEVELS.find(l=>l.id===state.level);
+  const lat = QUESTIONS[state.level][state.latihanIdx];
+  const q = lat.items[state.order[state.idx]];
+  const total = state.order.length;
+  const pct = Math.round((state.idx/total)*100);
+
+  let feedbackHtml = '';
+  if(state.answered){
+    const mainAnswer = q.answers[0];
+    const chars = mainAnswer.replace(/[,，]/g,'').split('');
+    const gridHtml = chars.map(c=>`<div class="grid-box small">${c}</div>`).join('');
+    const altHtml = q.answers.length>1 ? `<div class="answer-alt">Variasi lain yang juga diterima: ${q.answers.slice(1).map(a=>'<b>'+a+'</b>').join(', ')}</div>` : '';
+    feedbackHtml = `
+      <div class="feedback ${state.lastCorrect?'correct':'wrong'}">
+        <div class="verdict"><span class="stamp">${state.lastCorrect?'对':'X'}</span>${state.lastCorrect?'Benar!':'Belum tepat'}</div>
+        <div class="answer-grids">${gridHtml}</div>
+        ${altHtml}
+      </div>`;
+  }
+
+  return `
+  <div class="practice-head">
+    <div>
+      <span class="badge">${lvl.label} · ${lat.title}: ${lat.note}</span>
+    </div>
+    <div class="stat-row">
+      <span>Soal <b>${state.idx+1}/${total}</b></span>
+      <span>Skor <b>${state.score}</b></span>
+      <span>Beruntun <b>${state.streak}</b></span>
+    </div>
+  </div>
+  <div class="progress-bar"><div style="width:${pct}%"></div></div>
+
+  <div class="card">
+    <div class="qnote">${lat.note}</div>
+    <p class="qtext">&ldquo;${q.id_text}&rdquo;</p>
+    <div class="input-row">
+      <textarea id="answerInput" placeholder="输入汉字…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" ${state.answered?'disabled':''}></textarea>
+    </div>
+    <div class="actions">
+      ${state.answered
+        ? `<button class="btn" onclick="nextQuestion()">${state.idx<total-1?'Soal Berikutnya →':'Lihat Hasil →'}</button>`
+        : `<button class="btn" onclick="checkAnswer()">Periksa Jawaban</button>
+           <button class="btn ghost" onclick="revealAnswer()">Lihat Kunci</button>`
+      }
+      <button class="btn ghost" onclick="openLevel(state.level)">Kembali ke Daftar Latihan</button>
+    </div>
+    ${feedbackHtml}
+  </div>
+  `;
+}
+
+function renderSummary(){
+  const lvl = LEVELS.find(l=>l.id===state.level);
+  const lat = QUESTIONS[state.level][state.latihanIdx];
+  const total = state.order.length;
+  const best = getBest(state.level, state.latihanIdx);
+  return `
+  <div style="margin-top:40px;">
+  <div class="summary-card">
+    <div class="lvl">${lvl.label} · ${lat.title}: ${lat.note}</div>
+    <p class="big">${state.score} / ${total}</p>
+    <p class="who">${state.student.nama} — ${state.student.kelas}</p>
+    <p>Skor terbaikmu untuk latihan ini: <b>${best}</b> / ${total}</p>
+    <div class="actions" style="justify-content:center;">
+      <button class="btn" onclick="retryLatihan()">Coba Lagi</button>
+      <button class="btn ghost" onclick="openLevel(state.level)">Latihan Lain di ${lvl.label}</button>
+      <button class="btn ghost" onclick="goHome()">Pilih Level Lain</button>
+    </div>
+  </div>
+  </div>
+  `;
+}
+
+function renderVocab(){
+  const words = VOCAB[state.vocabLevel];
+  return `
+  <h2 class="section-title"><small>Referensi</small>Kosakata per level HSK</h2>
+  <div class="vocab-toolbar">
+    ${LEVELS.map(l=>`<button class="chip ${state.vocabLevel===l.id?'active':''}" onclick="pickVocabLevel(${l.id})">${l.label}</button>`).join('')}
+  </div>
+  <div class="table-scroll">
+  <table class="vocab">
+    <thead><tr><th>Hanzi</th><th>Arti (Indonesia)</th></tr></thead>
+    <tbody>
+      ${words.map(w=>`<tr><td class="hz">${w[0]}</td><td>${w[1]}</td></tr>`).join('')}
+    </tbody>
+  </table>
+  </div>
+  `;
+}
+
+function renderRekap(){
+  let history = [];
+  try{ history = JSON.parse(localStorage.getItem('whyfy_history')||'[]'); }catch(e){}
+  const rows = history.slice().reverse();
+  return `
+  <h2 class="section-title"><small>Database</small>Rekap Nilai Siswa</h2>
+  <p class="howto">Rekap ini otomatis tersimpan di browser/perangkat ini setiap kali seseorang menyelesaikan satu latihan. Ini berfungsi sebagai database sederhana untuk memantau track record siswa. Gunakan tombol di bawah untuk mengunduhnya sebagai file Excel/CSV (.csv) — file ini bisa langsung dibuka di Excel, Numbers, atau Google Sheets, dan proses unduhnya berjalan sepenuhnya di perangkat ini tanpa perlu koneksi internet.</p>
+  <div class="actions" style="margin:20px 0;">
+    <button class="btn" onclick="exportToExcel()">⬇ Unduh sebagai Excel (.csv)</button>
+    <button class="btn ghost" onclick="clearHistory()">Hapus Semua Data</button>
+  </div>
+  ${rows.length===0 ? '<p class="howto">Belum ada data latihan yang tercatat di perangkat ini.</p>' : `
+  <div class="table-scroll">
+  <table class="vocab">
+    <thead><tr><th>Nama</th><th>Kelas</th><th>Level</th><th>Latihan</th><th>Pola</th><th>Skor</th><th>Tanggal</th></tr></thead>
+    <tbody>
+      ${rows.map(r=>`<tr><td>${r.nama}</td><td>${r.kelas}</td><td>${r.level}</td><td>${r.latihanTitle}</td><td>${r.latihanNote}</td><td>${r.score}/${r.total}</td><td>${r.timestamp}</td></tr>`).join('')}
+    </tbody>
+  </table>
+  </div>`}
+  `;
+}
+
+render();
+</script>
+
+<div class="wrap">
+<footer class="site">
+  <span>Whyfy打字 — latihan mengetik hanzi untuk pelajar HSK 1–5</span>
+  <span>Dibuat untuk berlatih menulis aksara, bukan pinyin.</span>
+</footer>
+</div>
+</body>
+</html>
